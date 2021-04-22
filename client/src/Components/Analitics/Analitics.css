@@ -1,0 +1,39 @@
+.analitics {
+    border: 1px solid black;
+    display: inline;
+}
+
+.right {
+    float: right;
+    /* height: 300px; */
+    max-height: 1200px;
+    border-radius: 10px 0 0 10px;
+}
+
+.aside-analitics {
+    margin-top: 10px;
+    width: 17%;
+    padding-left: 10px;
+    height: 1200px;
+    overflow: scroll;
+}
+
+.chartjs-aside-wrapper {
+    width: 400px;
+    height: 400px;
+}
+
+canvas #canvas-1 {
+    width: 400px;
+    height: 400px;
+}
+
+canvas #canvas-2 {
+    width: inherit;
+    height: 400px;
+}
+
+canvas #canvas-3 {
+    width: inherit;
+    height: 400px;
+}

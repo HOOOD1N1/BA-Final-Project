@@ -1,0 +1,81 @@
+.popup {
+    background-color: black;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.close {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 7px solid #f56b00;
+    float: right;
+    background: linear-gradient(45deg, #00000000 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #f56b00 0%, #f56b00 43%, #fff 45%, #fff 55%, #f56b00 57%, #f56b00 100%);
+}
+
+.cardBox {
+    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 75%;
+    height: 75%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.messages {
+    border: 1px white solid;
+    width: 60vw;
+    height: 110%;
+    margin-top: 20%;
+    overflow: scroll;
+}
+
+.right-card {
+    border: 1px white solid;
+    width: 40%;
+    margin-top: 20%;
+    height: 110%;
+}
+
+.editor p {
+    color: black;
+}
+
+.messages p {
+    color: white;
+}
+
+.infoBox {
+    border-bottom: 1px white solid;
+}
+
+ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.buttons {
+    cursor: pointer;
+}
+
+.buttons li {
+    color: white;
+}
+
+.user-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.cardlist {
+    overflow: scroll;
+}

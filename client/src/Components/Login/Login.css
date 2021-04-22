@@ -1,0 +1,85 @@
+.grid {
+    display: grid;
+    grid-template-rows: 20% 47% 33%;
+    background-color: #f0f2f5;
+}
+
+.container {
+    margin: 300px auto;
+    display: flex;
+    border: 1px black solid;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.leftContainer {}
+
+.leftContainer h2 {
+    border: 1px black solid;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 32px;
+    width: 500px;
+    margin-top: 50px;
+}
+
+.or {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rightContainer {
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 100px;
+}
+
+.containerChild {
+    display: block;
+    margin: auto;
+    margin-bottom: 10%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.button-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.button-list * {
+    margin-right: 10px;
+}
+
+input {
+    border-radius: 3px;
+}
+
+input:focus {
+    box-shadow: red 5px;
+    transform: translate(5px 5px);
+}
+
+.title {
+    letter-spacing: 3px;
+}
+
+@media (max-width: 890px) {
+    .title {
+        letter-spacing: 3px;
+        text-align: center;
+    }
+    .leftContainer h2 {
+        text-align: center;
+    }
+    .rightContainer {
+        position: relative;
+        left: 50%;
+    }
+}
+
+div p.error-text {
+    background-color: red;
+}

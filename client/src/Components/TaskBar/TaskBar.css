@@ -1,0 +1,53 @@
+.taskbar {
+    height: 10vh;
+    box-sizing: border-box;
+    padding: 2vh;
+    display: flex;
+    width: 100vw;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    vertical-align: center;
+    border-bottom: 1px black solid;
+    /* align-items: center; */
+}
+
+.logo {
+    letter-spacing: 10px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.container {
+    border: 1px solid black;
+}
+
+.searchbar {
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.image {
+    display: inline-block;
+    border-radius: 15px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+    height: 3vh;
+    padding: 19px;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.image * {
+    margin: 2px 5px;
+}
+
+.right_side {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.signout {
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 20px;
+}

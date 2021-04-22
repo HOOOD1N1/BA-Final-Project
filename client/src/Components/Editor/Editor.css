@@ -1,0 +1,23 @@
+.editor {
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+    border: 1px red solid;
+    margin-bottom: 5px;
+}
+
+p {
+    color: black;
+}
+
+.button-span {
+    width: 100%;
+}
+
+.post-box {
+    float: right;
+    margin: 5px 30px;
+    width: 100px;
+    padding: 10px;
+    border-radius: 8px;
+}

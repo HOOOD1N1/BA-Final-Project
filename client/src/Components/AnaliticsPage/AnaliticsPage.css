@@ -1,0 +1,13 @@
+.grid_section {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: space-between;
+    height: 95vh;
+    width: 100%;
+    position: relative;
+}
+
+.section {
+    height: 30vh;
+    border: 1px black solid;
+}

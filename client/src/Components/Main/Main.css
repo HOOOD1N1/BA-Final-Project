@@ -1,0 +1,77 @@
+html {
+    width: 100%;
+}
+
+p {
+    color: black;
+}
+
+.main {
+    margin-top: 5vh;
+}
+
+.main>* {
+    border: 2px black solid;
+}
+
+.infos {
+    margin-top: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.infos * {
+    margin-right: 10px
+}
+
+.content {}
+
+.left {
+    float: left;
+    border-right: 1px black solid;
+    height: 300px;
+    margin-right: 7px;
+    border-radius: 0 6% 6% 0;
+}
+
+.editor-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.feedbar {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    /* position: relative; */
+    max-height: 9000px;
+    width: 65%;
+    margin: 10px auto;
+    margin-left: 10px;
+}
+
+.aside {
+    margin-top: 10px;
+    width: 15%;
+}
+
+.main_list {
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    color: black;
+}
+
+.feed {
+    max-height: 90000px;
+    border: 1px black solid;
+}
+
+.user_info {
+    margin: 0 auto;
+}

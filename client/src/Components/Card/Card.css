@@ -1,0 +1,47 @@
+.card {
+    margin-bottom: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    max-height: 900000px;
+    margin: 10px auto;
+    width: 50%;
+    border: 1px solid black;
+}
+
+.info {
+    border-bottom: 1px black solid;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 60px;
+    justify-content: space-between;
+}
+
+.message-box {
+    border: 1px black solid;
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 900000px;
+    overflow: hidden;
+}
+
+.actions {
+    display: flex;
+    flex-flow: row nowrap;
+    border: 1px black solid;
+    justify-content: space-between;
+}
+
+.message {
+    width: 100%;
+    word-wrap: normal;
+    overflow: hidden;
+}
+
+.message>* {
+    overflow-wrap: break-word;
+}
+
+.card_button {
+    cursor: pointer;
+}

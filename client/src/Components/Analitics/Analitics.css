@@ -6,26 +6,28 @@
 .right {
     float: right;
     /* height: 300px; */
-    max-height: 1200px;
+    max-height: 500px;
     border-radius: 10px 0 0 10px;
 }
 
 .aside-analitics {
+    position: relative;
     margin-top: 10px;
     width: 17%;
+    right: 0;
     padding-left: 10px;
     height: 1200px;
-    overflow: scroll;
 }
 
 .chartjs-aside-wrapper {
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    height: 500px;
 }
 
-canvas #canvas-1 {
+
+/* canvas #canvas-1 {
     width: 400px;
-    height: 400px;
+    height: 33vh;
 }
 
 canvas #canvas-2 {
@@ -36,4 +38,4 @@ canvas #canvas-2 {
 canvas #canvas-3 {
     width: inherit;
     height: 400px;
-}
+} */

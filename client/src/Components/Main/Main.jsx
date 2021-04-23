@@ -48,7 +48,7 @@ export default function Main(props) {
                 
                 <ul className="main_list">
                     <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
-                    <li className="list-item">Analitics</li>
+                    <li className="list-item">Analytics</li>
                     </Link>
                     
                     <li className="list-item">Rooms</li>

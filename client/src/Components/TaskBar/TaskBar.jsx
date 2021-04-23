@@ -35,7 +35,7 @@ export default function TaskBar(props){
             <span className="searchbar"><input type="search" name="search" id="search" placeholder="Search"/></span>
             <span className="right_side">
             <Link style={{textDecoration: "none", padding: "5px"}} to={`/profile/${user.userId}`} >
-                    <span className="image">
+                    <span className="image" style={{position:'relative'}}>
                         <img style={{width: '30px', height:'30px', borderRadius: '50%', float:'left'}} src={image} alt="user_image" className="profileImage"/>
                         <span>{username}</span>    
                     </span>

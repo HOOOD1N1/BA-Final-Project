@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './Analitics.css';
-import {Bar} from 'react-chartjs-2';
+
 import Chart from 'chart.js';
 
 const renderChart = (ctx, data=0) => {
@@ -9,10 +9,10 @@ const renderChart = (ctx, data=0) => {
      new Chart(ctx, {
             type: "bar",
             data: {
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
+                labels: ['Last Month', 'Last week', 'Today'],
                 datasets: [{
                     data: [12, 5, 7, 4],
-                    borderColor: "#4b92ff",
+                    
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -22,6 +22,10 @@ const renderChart = (ctx, data=0) => {
                 }]
             },
             options: {
+              title: {
+                display: true,
+                text: ["Personal Progress"]
+            },
                 legend: {
                   display: false
                 },
@@ -58,114 +62,18 @@ export default function Analitics(props){
     return (
         <aside className="aside-analitics right ">
             <div className="chartjs-aside-wrapper">
+                <div id="canvas-1'1" style={{position: 'relative', marginTop:'10px', height: '150px', width:'100%'}}>
                 <canvas id="canvas-1"></canvas>
+                </div>
+                < div id="canvas-1'1" style={{position: 'relative',marginTop:'10px', height: '150px', width:'100%'}}>
                 <canvas id="canvas-2"></canvas>
+                </div>
+                <div id="canvas-1'1" style={{position: 'relative',marginTop:'10px', height: '150px', width:'100%'}}>
                 <canvas id="canvas-3"></canvas>
-            {/* <Bar
-            data={{
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
-                datasets: [{
-                    label: '# your posts',
-                    data: [12, 5, 7, 4],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1,
-                }],
+                </div>
             
-            
-            
-            }}
-            options={{
-                maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }} 
-            height={50}
-            width={50}/>
-            <Bar
-            data={{
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
-                datasets: [{
-                    label: '# overall posts',
-                    data: [12, 5, 7, 4],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1,
-                }],
-            
-            
-            
-            }}
-            options={{
-                maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }} 
-            height={50}
-            width={50}/>
-            <Bar
-            height={50}
-            width={50}
-            data={{
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
-                datasets: [{
-                    label: '# of posts',
-                    data: [12, 5, 7, 4],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    
-                    borderWidth: 1,
-                }],
-            
-            
-            
-            }}
-            options={{
-                maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }} 
-    /> */}
-</div>
+            </div>
         </aside>
     );
 }
+export {renderChart};

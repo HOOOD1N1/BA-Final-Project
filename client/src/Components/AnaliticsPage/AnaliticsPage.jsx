@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './AnaliticsPage.css';
 import {Bar, Pie} from 'react-chartjs-2';
 import Taskbar from '../TaskBar/TaskBar';
+import {renderChart} from '../Analitics/Analitics';
 
 
  const AnaliticsPage =(props) =>{
@@ -20,6 +21,21 @@ import Taskbar from '../TaskBar/TaskBar';
        const newData = await data.json();
        setAnaliticsData(newData);
     },[])
+    useEffect(()=>{
+        const canvas1 = document.getElementById("page1").getContext('2d');
+        const canvas2 = document.getElementById("page2").getContext('2d');
+        // const canvas3 = document.getElementById("page3").getContext('2d');
+        // const canvas4 = document.getElementById("page4").getContext('2d');
+        // const canvas5 = document.getElementById("page5").getContext('2d');
+        // const canvas6 = document.getElementById("page6").getContext('2d');
+        renderChart(canvas1);
+        renderChart(canvas2);
+        // renderChart(canvas3);
+        // renderChart(canvas4);
+        // renderChart(canvas5);
+        // renderChart(canvas6);
+
+    },[])
 
     return(
         <div className="analitics-page">
@@ -27,122 +43,28 @@ import Taskbar from '../TaskBar/TaskBar';
             <div className="grid_section">
             <section className="title_section">
                 <h1 className="title_card" style={{textAlign: 'center'}}>
-                    Analitics
+                    Analytics
                 </h1>
             </section>
-            <section className="section">
-            <Bar
-            data={{
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
-                datasets: [{
-                    label: '# your posts',
-                    data: [12, 5, 7, 4],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1,
-                }],
-            
-            
-            
-            }}
-            options={{
-                maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }} 
-            height={50}
-            width={50}/>
-            
-            </section>
-            <section className="section">Section 2
-            <Bar
-            data={{
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
-                datasets: [{
-                    label: '# your posts',
-                    data: [12, 5, 7, 4],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1,
-                }],
-            
-            
-            
-            }}
-            options={{
-                maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }} 
-            height={50}
-            width={50}/>
-            </section>
-            <section className="section">Section 3
-            <Bar
-            data={{
-                labels: ['Luna trecuta', 'Ieri', 'Azi'],
-                datasets: [{
-                    label: '# your posts',
-                    data: [12, 5, 7, 4],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1,
-                }],
-            
-            
-            
-            }}
-            options={{
-                maintainAspectRatio: false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }} 
-            height={50}
-            width={50}/>
+            <section className="analytics-grid">
+                <div className="analytics-span">
+                <div id="span1" className="canvas-page">
+                <canvas id="page1" ></canvas>
+                </div>
+                {/* <div className="canvas-page">
+                <canvas id="page2" className="canvas-page "></canvas>
+                </div> */}
+                
+                </div>
+                {/* <canvas id="page3" className="canvas-page"></canvas>
+                <canvas id="page4" className="canvas-page"></canvas>
+                <canvas id="page5" className="canvas-page"></canvas>
+                <canvas id="page6" className="canvas-page"></canvas> */}
+
             </section>
             </div>
-            
         </div>
-    );
-}
+        );
+    }
 
 export default AnaliticsPage;

@@ -10,26 +10,26 @@ import {renderChart} from '../Analitics/Analitics';
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async()=>{
        const userId =  JSON.parse(localStorage.getItem('user')).userId;
-       const data = await fetch(`http://localhost:8888/analitics/${userId}`, {
-        method: "POST",
-        headers: {
-          //'Authorization': `Bearer ${user.userId}-${user.sessionId}-${user.sessionToken} `,
-          "Content-Type": "application/json",
-        },
-       });
-       //console.log(data.json());
-       const newData = await data.json();
-       setAnaliticsData(newData);
+    //    const data = await fetch(`http://localhost:8888/analitics-page/${userId}`, {
+    //     method: "POST",
+    //     headers: {
+    //       //'Authorization': `Bearer ${user.userId}-${user.sessionId}-${user.sessionToken} `,
+    //       "Content-Type": "application/json",
+    //     },
+    //    });
+    //    //console.log(data.json());
+    //    const newData = await data.json();
+    //    setAnaliticsData(newData);
     },[])
     useEffect(()=>{
         const canvas1 = document.getElementById("page1").getContext('2d');
-        const canvas2 = document.getElementById("page2").getContext('2d');
+        //const canvas2 = document.getElementById("page2").getContext('2d');
         // const canvas3 = document.getElementById("page3").getContext('2d');
         // const canvas4 = document.getElementById("page4").getContext('2d');
         // const canvas5 = document.getElementById("page5").getContext('2d');
         // const canvas6 = document.getElementById("page6").getContext('2d');
         renderChart(canvas1);
-        renderChart(canvas2);
+        //renderChart(canvas2);
         // renderChart(canvas3);
         // renderChart(canvas4);
         // renderChart(canvas5);

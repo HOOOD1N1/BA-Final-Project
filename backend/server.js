@@ -79,10 +79,40 @@ app.post('/main/user/:id', async(req, res) => {
 
 
 })
-app.post('/analitics/:userId', (req, res) => {
+app.get('/analitics_page/:userId', async(req, res) => {
     let userId = req.params.userId;
-    console.log('Tis is ' + userId);
-    res.send(JSON.stringify({ message: 'works' }));
+
+})
+app.get('/analitics/:userId', async(req, res) => {
+    let userId = req.params.userId;
+    try {
+        let totalPostsResult = await pool.query(`select count(*) from posts`);
+        let postsResult = await pool.query(`select count(id) from posts where author_id=${userId}`);
+        //console.log("this is the results " + postsResult.rows[0].count);
+        let totalCommentsResult = await pool.query(`select count(*) from comments`);
+        let commentsResult = await pool.query(`select count(id) from comments where author_id=${userId}`);
+
+        let totalReviewsResult = await pool.query(`select count(*) from reviews`);
+        let reviewsResult = await pool.query(`select count(id) from reviews where author_id=${userId}`);
+
+        console.log(totalPostsResult.rows[0],
+            totalCommentsResult.rows[0],
+            totalReviewsResult.rows[0],
+            postsResult.rows[0],
+            commentsResult.rows[0],
+            reviewsResult.rows[0]
+        )
+        res.json({
+            totalPosts: totalPostsResult.rows[0].count,
+            totalComments: totalCommentsResult.rows[0].count,
+            totalReviews: totalReviewsResult.rows[0].count,
+            postsResult: postsResult.rows[0].count,
+            commentsResult: commentsResult.rows[0].count,
+            reviewsResult: reviewsResult.rows[0].count,
+        })
+    } catch (error) {
+        console.log(error)
+    }
 })
 app.post('/:user/posts', async(req, res) => {
     var id = req.params.user;

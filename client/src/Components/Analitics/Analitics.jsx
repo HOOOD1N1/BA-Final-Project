@@ -3,20 +3,20 @@ import './Analitics.css';
 
 import Chart from 'chart.js';
 
-const renderChart = (ctx, data=0) => {
+const renderChart = (ctx, data=0, labels, text) => {
     Chart.defaults.global.defaultFontColor = "black";
     
      new Chart(ctx, {
             type: "bar",
             data: {
-                labels: ['Last Month', 'Last week', 'Today'],
+                labels: labels,
                 datasets: [{
-                    data: [12, 5, 7, 4],
+                    data: data,
                     
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
+                        
                     ],
                     borderWidth: 2,
                 }]
@@ -24,7 +24,7 @@ const renderChart = (ctx, data=0) => {
             options: {
               title: {
                 display: true,
-                text: ["Personal Progress"]
+                text: [text]
             },
                 legend: {
                   display: false
@@ -51,12 +51,22 @@ export default function Analitics(props){
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async()=>{
+      const userId =  JSON.parse(localStorage.getItem('user')).userId;
+        const value = await fetch(`http://localhost:8888/analitics/${userId}`);
+        let newValues = await value.json();
+        console.log("My analytics are" + JSON.parse(newValues.totalPosts))
         const ctx = document.getElementById("canvas-1").getContext('2d');
         const ctx2 = document.getElementById("canvas-2").getContext('2d');
         const ctx3 = document.getElementById("canvas-3").getContext('2d');
-        renderChart(ctx);
-        renderChart(ctx2);
-        renderChart(ctx3);
+        
+        let data1 = [JSON.parse(newValues.totalPosts), JSON.parse(newValues.postsResult)];
+        let data2 = [JSON.parse(newValues.totalComments), JSON.parse(newValues.commentsResult)];
+        let data3 = [JSON.parse(newValues.totalReviews), JSON.parse(newValues.reviewsResult)];
+
+        
+        renderChart(ctx, data1, ['Total Posts', 'Your posts'], 'Posts');
+        renderChart(ctx2, data2, ['Total Comments', 'Your comments'], 'Comments');
+        renderChart(ctx3, data3, ['Total Reviews', 'Your reviews'], 'Reviews');
     })
 
     return (

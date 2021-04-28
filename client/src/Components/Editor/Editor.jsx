@@ -124,6 +124,7 @@ export default function Editor(props){
             }
 
             <div className="editor">
+                    
                      <CKEditor editor={Eeditor}
                     data={text} 
                     onReady={ editor => {
@@ -160,6 +161,7 @@ export default function Editor(props){
                     <div>
                     </div>
                 </span>
+                {text}
         </div>
         
     );

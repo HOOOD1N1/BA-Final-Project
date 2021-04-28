@@ -36,6 +36,8 @@
     width: 100%;
     word-wrap: normal;
     overflow: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .message>* {

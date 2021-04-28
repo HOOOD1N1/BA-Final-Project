@@ -73,6 +73,7 @@ export default function Popup(props){
                         <h1 className="title">{title}</h1>
                     </div>
                     <div className="comment-editor">
+                    {actionType === 'reviews' ? <span><input type="text" placeholder="Grade"/></span> : null}
                         <Editor divState={actionType} postId={props.postId} userId={props.userId}/>
                     </div>
                     <div className="button-list">

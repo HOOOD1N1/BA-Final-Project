@@ -8,7 +8,14 @@ export default function TaskBar(props){
     const [username, setUsername] = useState('');
     const [image, setImage] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
-    const handleLogOut = () => {
+    const handleLogOut = async() => {
+        
+        await fetch(`http://localhost:8888/clear/${user.userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         localStorage.removeItem("user");
         props.history.push('/');
     }

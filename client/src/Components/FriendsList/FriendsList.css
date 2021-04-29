@@ -1,0 +1,26 @@
+.friend-list {
+    border: 1px solid black;
+    height: 100%;
+    width: 25%;
+    overflow-y: scroll;
+}
+
+.friend-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.singular {
+    border: 1px black solid;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.singular img {
+    display: inline;
+}
+
+.singular h3 {
+    display: inline;
+}

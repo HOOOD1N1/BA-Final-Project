@@ -14,9 +14,9 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 7px solid #f56b00;
+    border: 7px solid red;
     float: right;
-    background: linear-gradient(45deg, #00000000 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, #f56b00 0%, #f56b00 43%, #fff 45%, #fff 55%, #f56b00 57%, #f56b00 100%);
+    background: linear-gradient(45deg, #00000000 0%, rgba(0, 0, 0, 0) 43%, #fff 45%, #fff 55%, rgba(0, 0, 0, 0) 57%, rgba(0, 0, 0, 0) 100%), linear-gradient(135deg, red 0%, red 43%, #fff 45%, #fff 55%, red 57%, red 100%);
 }
 
 .cardBox {

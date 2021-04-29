@@ -52,7 +52,10 @@ export default function Main(props) {
                     </Link>
                     
                     <li className="list-item">Rooms</li>
+                    <Link style={{textDecoration: 'none'}} to={`/chat/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Chat</li>
+                    </Link>
+                    
                 </ul>            
             </aside>
             <span className="feedbar">
@@ -62,6 +65,7 @@ export default function Main(props) {
                         <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`}>
                         <span>{userName}</span>
                         </Link>
+                        
                     </span>
                 <Editor divState='post' userId={JSON.parse(localStorage.getItem('user')).userId}/>
                 </div>

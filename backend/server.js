@@ -116,9 +116,21 @@ app.get('/analitics/:userId', async(req, res) => {
     })
     //delete session
 app.delete('/clear/:userId', async(req, res) => {
-    const userId = req.params.userId;
-    await pool.query(`DELETE FROM sessions WHERE user_id=${userId};`)
-    res.status(200).send();
+        const userId = req.params.userId;
+        await pool.query(`DELETE FROM sessions WHERE user_id=${userId};`)
+        res.status(200).send();
+    })
+    //check if sessions already exists
+app.post('/session/validate/:userId', async(req, res) => {
+    const { sessionToken } = req.body;
+    const { userId } = req.params
+    const result = await pool.query(`SELECT id FROM sessions WHERE user_id=$1 AND session_token=$2;`, [userId, sessionToken])
+    if (result.rowCount === 1) {
+        res.send(JSON.stringify({ 'status': 'success', message: 'VALID_SESSION' }));
+    } else {
+        res.send(JSON.stringify({ 'status': 'error', message: 'INVALID_SESSION' }));
+    }
+    //res.send()
 })
 
 app.post('/:user/posts', async(req, res) => {

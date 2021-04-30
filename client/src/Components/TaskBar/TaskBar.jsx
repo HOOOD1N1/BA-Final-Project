@@ -7,6 +7,11 @@ import {Redirect, Link} from 'react-router-dom';
 export default function TaskBar(props){
     const [username, setUsername] = useState('');
     const [image, setImage] = useState('')
+    const [results, setResults] = useState([
+        {image: 'http://localhost:8888/photos/default-profile-picture.jpg', name: 'here'},
+        {image: 'http://localhost:8888/photos/default-profile-picture.jpg', name: 'ee'},
+    ]);
+
     const user = JSON.parse(localStorage.getItem('user'))
     const handleLogOut = async() => {
         
@@ -34,17 +39,35 @@ export default function TaskBar(props){
              
     },[])
 
-
+    const handleSearch = async() => {
+    if(document.getElementById("search-results").style.display === 'block'){
+        document.getElementById("search-results").style.display = 'none'
+    } else
+    document.getElementById("search-results").style.display = 'block';
+        
+    }
     ;
     return (
         <nav className="taskbar">
             <Link to='/feed'><span className="logo">MyStories</span></Link>
-            <span className="searchbar"><input type="search" name="search" id="search" placeholder="Search"/></span>
+            <span className="searchbar">
+                <input type="search" name="search" id="search" placeholder="Search" onClick={handleSearch}/>
+                <div id="search-results">
+                    {results.map(result => {
+                       return <div className="searchResult">
+                           <span className="result">
+                            <img src={result.image} alt="search result" className="search-result-image"/>
+                            <p className="friend-name">{result.name}</p>
+                        </span>
+                       </div> 
+                    } )}
+                </div>
+            </span>
             <span className="right_side">
             <Link style={{textDecoration: "none", padding: "5px"}} to={`/profile/${user.userId}`} >
-                    <span className="image" style={{position:'relative'}}>
-                        <img style={{width: '30px', height:'30px', borderRadius: '50%', float:'left'}} src={image} alt="user_image" className="profileImage"/>
-                        <span>{username}</span>    
+                    <span className="image" style={{position:'relative', width:'80px'}}>
+                        <img style={{width: '40px', height:'40px', borderRadius: '50%', position: 'absolute', left: '0', top: '0'}} src={image} alt="user_image" className="profileImage"/>
+                        <span style={{position: 'absolute', right: '0', marginLeft:'20px', verticalAlign:'center'}}>{username}</span>    
                     </span>
                 </Link>
                 <button style={{cursor:'pointer'}}className="signout" onClick={handleLogOut}>

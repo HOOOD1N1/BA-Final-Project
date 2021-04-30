@@ -18,7 +18,7 @@ export default function FriendsList(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async() => {
         const user = JSON.parse(localStorage.getItem("user"));
-        var result = await fetch(`http://localhost:8888/user/chat/${user.userId}`);
+        var result = await fetch(`http://localhost:8888/contacts/${user.userId}`);
         let newResult = await result.json();
       
     }, []);

@@ -49,7 +49,6 @@ export default function ProfileCard() {
   }, []);
 
   const handleClickProfilePicture = ( ) => {
-    
     if(verify() === true){
       console.log("DA");  
       document.querySelector('input[type="file"]').click()
@@ -103,6 +102,7 @@ export default function ProfileCard() {
 
   }
 
+
   return (
     <div className="profile-card">
       <span className="leftside">
@@ -137,6 +137,11 @@ export default function ProfileCard() {
           </ul>
         </div>
       </span>
+        {
+        verify() === false ?
+         <button>Befriend</button> : null 
+        }
     </div>
+
   );
 }

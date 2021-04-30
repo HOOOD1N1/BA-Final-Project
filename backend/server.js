@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require("cors")
+const socketIo = require("socket.io");
 const fs = require('fs')
 const User = require("./controllers/User")
 const multiparty = require("connect-multiparty");
@@ -71,7 +72,7 @@ app.post('/main/user/:id', async(req, res) => {
         }
     } catch (error) {
         res.send({
-            status: 'failed',
+            status: 'ERROR',
             message: 'MAIN_USERNAME_RETRIEVAL_ERROR'
         })
         res.send(error)
@@ -481,6 +482,14 @@ app.post('/register', async(req, res, next) => {
     }
     next()
 })
+
+
+//socket.io
+// const server = http.createServer(app);
+// 
+// const io = socketIo(server);
+
+
 
 app.listen(PORT, (err) => {
 

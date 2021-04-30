@@ -157,25 +157,27 @@ export default function Login(props) {
 
     })
     useEffect(async() => {
-        if(localStorage.getItem('user') !== undefined){
-            var user = JSON.parse(localStorage.getItem('user'));
-            var sessionToken = user.sessionToken;
-        }
+        const existingSession = localStorage.getItem('user')
+
+
+        if(existingSession){
+            const {sessionToken, userId} = JSON.parse(existingSession);
         
-        if(user.userId !== undefined) {
-            const result = await fetch(`http://localhost:8888/session/validate/${user.userId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    sessionToken
-                })
-                
-            });
-            const JSONresult = await result.json();
-            if(JSONresult.status === 'success'){
-                setAuth(true);
+            if(userId) {
+                const result = await fetch(`http://localhost:8888/session/validate/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sessionToken
+                    })
+                    
+                });
+                const JSONresult = await result.json();
+                if(JSONresult.status === 'success'){
+                    setAuth(true);
+                }
             }
         }
         

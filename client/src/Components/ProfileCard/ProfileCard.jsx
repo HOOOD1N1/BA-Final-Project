@@ -9,6 +9,8 @@ export default function ProfileCard() {
   const [nrPosts, setNrPosts] = useState(0);
   const [nrComments, setNrComments] = useState(0);
   const [nrReviews, setNrReviews] = useState(0);
+  const [checkFriendship, setCheckFriendship] = useState(false);
+  const [message, setMessage] = useState('Befriend');
   const location = useLocation();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   var number = 0;
@@ -47,6 +49,20 @@ export default function ProfileCard() {
       //  username?.username &&  setUsername(username);
     }
   }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async() => {
+    if(verify() === false) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user.userId;
+      let result = await fetch(`http://localhost:8888/check/friend/${userId}/${number}`)
+      let newResult = await result.json();
+      if(newResult.check === true) {
+        setCheckFriendship(true);
+        setMessage('Friend ✓');
+    }
+    }
+  }, [])
 
   const handleClickProfilePicture = ( ) => {
     if(verify() === true){
@@ -101,6 +117,22 @@ export default function ProfileCard() {
     else return false;
 
   }
+  const handleFriend = async() => {
+    let user = JSON.parse(localStorage.getItem('user'))
+    let userId = user.userId;
+    let result = await fetch(`http://localhost:8888/handleFriend/${userId}/${number}`)
+    let newResult = await result.json();
+    console.log(newResult)
+    if(newResult.message === 'FRIENDSHIP_DELETED') {
+      console.log('Enters maybe')
+      setMessage('Befriend');
+    } else if(newResult.message === 'FRIENDSHIP_ADDED'){
+      console.log('Enters maybe and adds')
+      setMessage('Friend ✓');
+    }
+
+
+  }
 
 
   return (
@@ -139,7 +171,7 @@ export default function ProfileCard() {
       </span>
         {
         verify() === false ?
-         <button>Befriend</button> : null 
+         <button onClick={handleFriend}>{message}</button> : null 
         }
     </div>
 

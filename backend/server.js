@@ -2,13 +2,16 @@ const express = require('express')
 const app = express()
 const cors = require("cors")
 const socketIo = require("socket.io");
+const http = require('http')
 const fs = require('fs')
 const User = require("./controllers/User")
 const multiparty = require("connect-multiparty");
 const { json } = require("body-parser")
 const { pool } = require("./config/db/db")
+const chatRouter = require('./routes/chat-routes');
 var multer = require('multer')
-const cryptoRandomString = require('crypto-random-string')
+const cryptoRandomString = require('crypto-random-string');
+const { query } = require('express');
 var upload = multer({
     storage: multer.diskStorage({
         destination: './photos/',
@@ -32,6 +35,7 @@ app.use('/photos', express.static(`${__dirname}/photos/`))
 app.post('/ckuploads', MultiPartyMiddleWare, (req, res) => {
     console.log(req.files.upload);
 })
+app.use(chatRouter);
 app.post('/photo/:id', upload.single('uploaded_file'), async(req, res) => {
     // console.log(JSON.stringify(req.file))
     console.log(req.file.filename)
@@ -45,6 +49,44 @@ app.post('/photo/:id', upload.single('uploaded_file'), async(req, res) => {
         console.log(error);
     }
 
+})
+app.get('/check/friend/:userId/:friend', async(req, res) => {
+    //const { friend } = req.body;
+    //console.log('body is ' + friend)
+    const userId = req.params.userId;
+    const friend = req.params.friend;
+    console.log("my friend is" + friend)
+    const result = await pool.query('SELECT id FROM friends WHERE userid1=$1 AND userid2=$2 OR userid1=$2 AND userid2=$1', [friend, userId]);
+    if (result.rowCount === 1) {
+        let message = {
+            check: true
+        };
+        res.send(JSON.stringify(message))
+    } else {
+        let message = {
+            check: false
+        };
+        res.send(JSON.stringify(message))
+    }
+})
+app.get('/handleFriend/:userId/:friend', async(req, res) => {
+    console.log("ENTERS, MAYBE")
+    let userId = req.params.userId;
+    let friend = req.params.friend;
+    let check = await pool.query('SELECT id FROM friends WHERE userid1=$1 AND userid2=$2 OR userid1=$2 AND userid2=$1', [friend, userId]);
+    if (check.rowCount === 1) {
+        console.log("ENTERS AND DELETES")
+        await pool.query('DELETE FROM friends WHERE userid1=$1 AND userid2=$2 OR userid1=$2 AND userid2=$1', [friend, userId])
+        res.send(JSON.stringify({
+            message: 'FRIENDSHIP_DELETED'
+        }))
+    } else {
+        console.log("ENTERS AND INSERTS")
+        await pool.query('INSERT INTO friends (userid1, userid2) VALUES ($1, $2)', [friend, userId])
+        res.send(JSON.stringify({
+            message: 'FRIENDSHIP_ADDED'
+        }))
+    }
 })
 app.get('/taskbar/photo/:userId', async(req, res) => {
     let userId = req.params.userId;
@@ -325,7 +367,7 @@ app.post('/editor/user/:id/:type', async(req, res) => {
 
     } else if (type === 'review') {
         var userId = req.params.id;
-        var review = req.body.reviewValue;
+        var review = req.body.review;
         var postId = req.body.postId;
         console.log(`enters review ${postId} and value ${review}`);
         try {
@@ -484,14 +526,40 @@ app.post('/register', async(req, res, next) => {
 })
 
 
-//socket.io
-// const server = http.createServer(app);
-// 
-// const io = socketIo(server);
+// socket.io
+const server = http.createServer(app);
+const io = socketIo(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+});
+io.on("connection", (socket) => {
+    console.log("New user connected");
+    io.of('user');
 
 
+    socket.on("enter", async(payload) => {
+        const { user1, user2 } = JSON.parse(payload);
+        console.log('Connection solved')
+        console.log('user1', user1, 'user2', user2)
+        socket.join(`${user1}-${user2}`);
+        let key1 = `${user1}-${user2}`;
+        let key2 = `${user2}-${user1}`;
+        let result = await pool.query('SELECT message FROM messages WHERE chatroom=$1 OR chatroom=$2', [key1, key2])
+        console.log(result.rows)
+        if (result.rowCount >= 1)
+            socket.of('user').to(`${user1}-${user2}`).emit('messages', JSON.stringify({ messages: result.rows }))
+    })
 
-app.listen(PORT, (err) => {
+    socket.on("disconnect", () => {
+        console.log("Client disconnected");
+
+    });
+});
+
+
+server.listen(PORT, (err) => {
 
     console.log(`Listening to http://localhost:${PORT}`)
 

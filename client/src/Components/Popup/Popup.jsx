@@ -9,11 +9,9 @@ import parse from 'html-react-parser';
 
 
 export default function Popup(props){
-    const [message, setMessage] = useState('');
-    const [userName, setUserName] = useState('');
-    const [userId, setUserId] = useState('');
+    
     const [title, setTitle] = useState('');
-    const [postId, setPostId] = useState(1);
+    const [reviewValue, setReviewValue] = useState(0);
     const [actionType, setActionType] = useState('comments')
     const [color1, setColor1] = useState('red');
     const [color2, setColor2] = useState('white');
@@ -73,8 +71,8 @@ export default function Popup(props){
                         <h1 className="title">{title}</h1>
                     </div>
                     <div className="comment-editor">
-                    {actionType === 'reviews' ? <span><input type="text" placeholder="Grade"/></span> : null}
-                        <Editor divState={actionType} postId={props.postId} userId={props.userId}/>
+                    {actionType === 'reviews' ? <span><input id="grade" type="text" placeholder="Grade" onChange={(e) => {setReviewValue(e.target.value); console.log(e.target.value)}}/></span> : null}
+                        <Editor divState={actionType} postId={props.postId} userId={props.userId} grade={reviewValue}/>
                     </div>
                     <div className="button-list">
                         <ul className="buttons">

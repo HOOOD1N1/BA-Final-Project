@@ -6,6 +6,7 @@ import FriendsList from '../FriendsList/FriendsList';
 import TaskBar from '../TaskBar/TaskBar';
 import Messages from '../Messages/Messages.jsx';
 import ScrollToBottom from 'react-scroll-to-bottom'; 
+import socketIOClient from "socket.io-client";
 
 export default function Chat(props) {
     const [username, setUsername] = useState('');
@@ -24,6 +25,7 @@ export default function Chat(props) {
         setUsername(JSONphoto[0].username)
              
     },[])
+
     
     return (
         <div>

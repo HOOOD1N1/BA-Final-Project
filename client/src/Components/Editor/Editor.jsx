@@ -82,6 +82,7 @@ export default function Editor(props){
         .catch(error => console.log(error));
         }else if(action === 'review'){
             console.log('review');
+            console.log('Grade is' + props.grade)
             fetch(`http://localhost:8888/editor/user/${userId.userId}/${action}`, {
             method:'POST',
             headers: {
@@ -92,7 +93,7 @@ export default function Editor(props){
                 content: `${sendText}`,
                 reviewValue: `${reviewValue}`,
                 postId: `${props.postId}`,
-                review: `${reviewValue}`
+                review: `${props.grade}`
             })
         })
         .then(response => response.json())

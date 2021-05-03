@@ -7,10 +7,7 @@ import {Redirect, Link} from 'react-router-dom';
 export default function TaskBar(props){
     const [username, setUsername] = useState('');
     const [image, setImage] = useState('')
-    const [results, setResults] = useState([
-        {image: 'http://localhost:8888/photos/default-profile-picture.jpg', name: 'here'},
-        {image: 'http://localhost:8888/photos/default-profile-picture.jpg', name: 'ee'},
-    ]);
+    const [results, setResults] = useState([]);
 
     const user = JSON.parse(localStorage.getItem('user'))
     const handleLogOut = async() => {
@@ -39,27 +36,35 @@ export default function TaskBar(props){
              
     },[])
 
-    const handleSearch = async() => {
+    const handleSearchShow = async() => {
     if(document.getElementById("search-results").style.display === 'block'){
         document.getElementById("search-results").style.display = 'none'
     } else
     document.getElementById("search-results").style.display = 'block';
         
     }
-    ;
+    const handleSearch =async(e) =>{
+        let val = e.target.value;
+        let result = await fetch(`http://localhost:8888/query/search?value=${val}`)
+        let newResults = await result.json()
+        setResults(newResults.results)
+    }
+    
     return (
         <nav className="taskbar">
             <Link to='/feed'><span className="logo">MyStories</span></Link>
             <span className="searchbar">
-                <input type="search" name="search" id="search" placeholder="Search" onClick={handleSearch}/>
+                <input type="search" name="search" id="search" placeholder="Search"  autocomplete="off" onClick={handleSearchShow} onKeyDown={(e) => handleSearch(e)}/>
                 <div id="search-results">
                     {results.map(result => {
-                       return <div className="searchResult">
+                       return <Link to={`/profile/${result.id}`} style={{textDecoration: 'none', zIndex: 10}}>
+                        <div className="searchResult">
                            <span className="result">
-                            <img src={result.image} alt="search result" className="search-result-image"/>
+                            <img src={`http://localhost:8888/photos/${result.image}`} alt="search result" className="search-result-image"/>
                             <p className="friend-name">{result.name}</p>
                         </span>
-                       </div> 
+                       </div>
+                       </Link> 
                     } )}
                 </div>
             </span>

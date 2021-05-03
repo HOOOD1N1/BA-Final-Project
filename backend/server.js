@@ -12,6 +12,7 @@ const chatRouter = require('./routes/chat-routes');
 var multer = require('multer')
 const cryptoRandomString = require('crypto-random-string');
 const { query } = require('express');
+const { type } = require('os');
 var upload = multer({
     storage: multer.diskStorage({
         destination: './photos/',
@@ -88,6 +89,8 @@ app.get('/handleFriend/:userId/:friend', async(req, res) => {
         }))
     }
 })
+
+//taskbar
 app.get('/taskbar/photo/:userId', async(req, res) => {
     let userId = req.params.userId;
     try {
@@ -101,6 +104,12 @@ app.get('/taskbar/photo/:userId', async(req, res) => {
         res.send(error);
     }
 
+})
+app.get('/query/search', async(req, res) => {
+    let value = req.query.value;
+    let result = await pool.query(`select id, username as name, profile_image as image from "Users" where username like '${value}%';`)
+    console.log(result.rows)
+    if (result.rows) res.send(JSON.stringify({ results: result.rows }))
 })
 
 app.post('/main/user/:id', async(req, res) => {

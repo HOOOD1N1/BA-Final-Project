@@ -79,3 +79,8 @@ ul {
 .cardlist {
     overflow: scroll;
 }
+
+.messages_text {
+    overflow-y: scroll;
+    word-wrap: anywhere;
+}

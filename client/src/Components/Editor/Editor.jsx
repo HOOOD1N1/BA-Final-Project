@@ -149,11 +149,12 @@ export default function Editor(props){
                         {
                             ckfinder:{
                                 uploadUrl:'http://localhost:8888/ckuploads'
-                            }
+                            },
+                            baseFloatZIndex : 1
                         }
                     }
 
-                    />
+                    style={{zIndex: 1}}/>
             </div>
                 <span className="button-span">
                     <button className="card_button post-box" onClick={e => handleOnClick(e)}>
@@ -162,7 +163,6 @@ export default function Editor(props){
                     <div>
                     </div>
                 </span>
-                {text}
         </div>
         
     );

@@ -64,7 +64,8 @@
     border: 1px solid black;
     display: none;
     width: 200px;
-    z-index: 2;
+    position: relative;
+    z-index: 10;
     background-color: lightskyblue;
 }
 

@@ -40,7 +40,7 @@ export default function Main(props) {
                 </picture>
                 <div className="user_info">
                     <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`} image={image}>
-                    <div>{userName}</div>
+                    <p style={{display:'inline'}}>{userName}</p>
                     </Link>
                 
                 </div>
@@ -63,7 +63,7 @@ export default function Main(props) {
                     <span>
                         <img className="editor-image" style={{borderRadius: '50%', width: '50px', height: '50px'}} src={image} alt="profile"/>
                         <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`}>
-                        <span>{userName}</span>
+                        <p style={{display:'inline'}}>{userName}</p>
                         </Link>
                         
                     </span>

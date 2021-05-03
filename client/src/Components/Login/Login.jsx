@@ -205,19 +205,19 @@ export default function Login(props) {
                      </div>
                      :null
                 }
-                <div className="button-list">
+                {/* <div className="button-list"> */}
                 { /* <a href="http://localhost:9000/auth/google">GOOGLE+</a>*/} 
-                <div class="g-signin2" data-onsuccess="signInWithGoogle"></div>
-                <span onClick={window.signOut}><button>Sign Out from Google</button></span>
+                {/* <div className="g-signin2" data-onsuccess="signInWithGoogle"></div> */}
+                {/* <span onClick={window.signOut}><button>Sign Out from Google</button></span> */}
             
                 { /*<FontAwesomeIcon icon={['fab', 'google']} />*/}
-                <a href="http://localhost:9000/auth/github">Github</a>
-                {/*<FontAwesomeIcon icon={["fab", "github"]} />*/}
-                
-                </div>
+                {/* <a href="http://localhost:9000/auth/github">Github</a> */}
+                {/* <FontAwesomeIcon icon={["fab", "github"]} /> */}
+                {/*  */}
+                {/* </div> */}
                  
-                <br/>
-                <div className="or">or</div>
+                {/* <br/> */}
+                {/* <div className="or">or</div> */}
 
 
 

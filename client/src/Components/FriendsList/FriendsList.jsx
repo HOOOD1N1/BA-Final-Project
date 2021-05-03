@@ -52,7 +52,7 @@ export default function FriendsList(props) {
         <div className="friend-list">
             {friends.map(friend => {
                 return (
-                    <div classname="friend" onClick={()=>{
+                    <div className="friend" onClick={()=>{
                         openChannel(friend.userid)
                     }}>
                         <span className="singular">

@@ -61,10 +61,10 @@ function Card(props) {
             <span className="info">
                 <span className="info-left">
                     
-                    <Link  to={`/profile/${props.userId}`} routeUser={props.userId}>
+                    <Link  to={`/profile/${props.userId}`} style={{textDecoration: 'none'}}>
                         <span>
                             <img src={`${userPhoto}`} style={{borderRadius: '50%', width: '50px', height: '50px'}} alt="user_photo"/>
-                            <a href='' className="user-link">{props.username}</a>
+                            <p style={{display:'inline'}}>{props.username}</p>
                         </span>
                     </Link>
                     

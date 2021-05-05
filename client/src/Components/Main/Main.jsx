@@ -35,18 +35,20 @@ export default function Main(props) {
             <div className="main">
             <aside className="left aside">
                 <span className="infos">
+                <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`} image={image}>
                 <picture>
                     <img src={image} style={{borderRadius: '50%', width: '50px', height: '50px'}} alt="photo_user"/>
                 </picture>
-                <div className="user_info">
-                    <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`} image={image}>
+                <span className="user_info">
+                    
                     <p style={{display:'inline'}}>{userName}</p>
-                    </Link>
+                    
                 
-                </div>
+                </span>
+                </Link>
                 </span>
                 
-                <ul className="main_list">
+                <ul className="main_list" style={{textAlign:'center'}}>
                     <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Analytics</li>
                     </Link>
@@ -59,11 +61,12 @@ export default function Main(props) {
                 </ul>            
             </aside>
             <span className="feedbar">
-                <div className="editor-box">
-                    <span>
-                        <img className="editor-image" style={{borderRadius: '50%', width: '50px', height: '50px'}} src={image} alt="profile"/>
+                <div className="editor-box-parent">
+                    <span style={{marginBottom:'10px', height:'50px'}}>
                         <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`}>
-                        <p style={{display:'inline'}}>{userName}</p>
+                        <img className="editor-image" style={{borderRadius: '50%', width: '50px', height: '50px'}} src={image} alt="profile"/>
+                        
+                        <p style={{display:'inline', margin: 'auto 0', verticalAlign: 'super'}}>{userName}</p>
                         </Link>
                         
                     </span>

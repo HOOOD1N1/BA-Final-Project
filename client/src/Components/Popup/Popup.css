@@ -1,6 +1,6 @@
 .popup {
     background-color: black;
-    opacity: 0.8;
+    opacity: 1;
     position: fixed;
     top: 0;
     left: 0;
@@ -34,7 +34,7 @@
     width: 60vw;
     height: 110%;
     margin-top: 20%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .right-card {
@@ -42,6 +42,7 @@
     width: 40%;
     margin-top: 20%;
     height: 110%;
+    background-color: #242526;
 }
 
 .editor p {
@@ -77,10 +78,19 @@ ul {
 }
 
 .cardlist {
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .messages_text {
-    overflow-y: scroll;
     word-wrap: anywhere;
+}
+
+#grade {
+    width: 100px;
+}
+
+.username {
+    color: white;
+    display: inline;
+    vertical-align: super;
 }

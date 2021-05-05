@@ -9,8 +9,20 @@
     border: 1px solid black;
 }
 
+.child-card {
+    margin-bottom: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    max-height: 900000px;
+    margin: 10px auto;
+    width: 100%;
+    border: 1px solid white;
+    color: white;
+    background-color: white;
+}
+
 .info {
-    border-bottom: 1px black solid;
     display: flex;
     flex-flow: row nowrap;
     height: 60px;
@@ -18,24 +30,27 @@
 }
 
 .message-box {
-    border: 1px black solid;
+    border-bottom: 1px black solid;
     display: flex;
     flex-flow: column nowrap;
     max-height: 900000px;
-    overflow: hidden;
+    max-height: 800px;
+    overflow-y: auto;
+    width: inherit;
 }
 
 .actions {
     display: flex;
     flex-flow: row nowrap;
-    border: 1px black solid;
-    justify-content: space-between;
+    border-bottom: 1px black solid;
+    justify-content: space-around;
+    /* position: relative;
+    bottom: 0; */
 }
 
 .message {
     width: 100%;
-    word-wrap: normal;
-    overflow: hidden;
+    word-wrap: break-word;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -46,4 +61,23 @@
 
 .card_button {
     cursor: pointer;
+}
+
+.card_button p {
+    position: relative;
+    top: -3px;
+}
+
+.card_button:hover {
+    color: blue;
+    border-bottom: 1px solid blue;
+}
+
+.card_button p:hover {
+    color: #0000ff;
+}
+
+.card_button img:hover {
+    color: #0000ff;
+    background: url('http://localhost:8888/photos/blue-like.png');
 }

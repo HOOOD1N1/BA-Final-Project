@@ -14,7 +14,6 @@ function Card(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async()=>{
         setUserPhoto(`http://localhost:8888/photos/${props.image}`)
-        console.log(`fetching ${props.postId}'s likes`)
         //console.log(`${props.username} ${props.userId} ${props.postId} ${props.message}`)
         const like = await fetch(`http://localhost:8888/${props.form}/likes/${props.postId}`, {
             
@@ -57,29 +56,35 @@ function Card(props) {
     
 
     return (
-        <div className="card">
+        <div className={props.parent === 'popup' ? "child-card" : "card"} width={props.parent === 'profile' ? "75%" : "100%"} >
             <span className="info">
                 <span className="info-left">
                     
                     <Link  to={`/profile/${props.userId}`} style={{textDecoration: 'none'}}>
                         <span>
-                            <img src={`${userPhoto}`} style={{borderRadius: '50%', width: '50px', height: '50px'}} alt="user_photo"/>
-                            <p style={{display:'inline'}}>{props.username}</p>
+                            <img src={`${userPhoto}`} style={{borderRadius: '50%', width: '50px', height: '50px',objectFit: 'contain',
+    backgroundColor: 'black'}} alt="user_photo"/>
+                            <p style={{display:'inline', verticalAlign:'super'}}>{props.username}</p>
                         </span>
                     </Link>
+
                     
                 </span>
-                <span className="right">
-                    <button onClick={renderPopup}>Maximize</button>
-                </span>
-                
-            </span>
-            {(props.parent === 'main' || props.parent === 'profile')   ?
-                <div className="title-of-card">
-                    <h4>Title of Post: {props.title}</h4>
+                {(props.parent === 'main' || props.parent === 'profile' || props.parent === 'analytics')   
+                ?
+                <div className="title-of-card" >
+                    <h5 >{props.title}</h5>
                 </div>
                 : null
             }
+              { props.parent !== 'popup' ? 
+                <span className="right">
+                    <img width="20px" height="20px" src='http://localhost:8888/photos/maximize.png' alt="maximize" onClick={renderPopup} style={{cursor: 'pointer',marginTop:'10px', marginRight:'10px'}}/>
+                </span>
+                :null
+                }    
+            </span>
+            
             
             
             
@@ -87,9 +92,9 @@ function Card(props) {
                 
                 <span className="message">{parse(props.message)}</span>
                 <span className="actions">
-                    <span className="card_button like" onClick={handlePostLike}>Like {numberLikes}</span>
-                    <span className="card_button comment" onClick={() => {setPopupOn(true); setReview(false)}}>Comment</span>
-                    <span className="card_button review" onClick={() =>{ setPopupOn(true); setReview(true)}}>Review</span>
+                    <span className="card_button like" onClick={handlePostLike}> <img src='http://localhost:8888/photos/like.png' alt="" width="20px" height="20px" style={{margin:'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Like {numberLikes}</p></span>
+                    <span className="card_button comment" onClick={() => {setPopupOn(true); setReview(false)}}><img src='http://localhost:8888/photos/chat.png' alt="" width="20px" height="20px" style={{margin: 'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Comment</p></span>
+                    <span className="card_button review" onClick={() =>{ setPopupOn(true); setReview(true)}}><img src='http://localhost:8888/photos/writing.png' alt="" width="20px" height="20px" style={{margin:'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Review</p></span>
                 </span>
                 </div>
             { popupOn && <Popup close={setPopupOn} userName={props.username} userPhoto={userPhoto} message={props.message} userId={props.userId} postId={props.postId} button={review}

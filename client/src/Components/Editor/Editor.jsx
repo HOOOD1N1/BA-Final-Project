@@ -4,6 +4,7 @@ import './Editor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Eeditor from '@ckeditor/ckeditor5-build-classic';
 
+
 export default function Editor(props){
     const [text, setText] = useState('');
     const [reviewValue, setReviewValue] = useState(0);
@@ -47,6 +48,13 @@ export default function Editor(props){
         console.log('action is ' + action);
         var sendText = encodeURI(text);
         if(action === 'post') {
+            let postTitle;
+            
+            if(title === ''){
+                postTitle="Untitled"
+            } else {
+                postTitle=title;
+            }
             console.log('post');
             fetch(`http://localhost:8888/editor/user/${props.userId}/${action}`, {
             method:'POST',
@@ -56,7 +64,7 @@ export default function Editor(props){
             },
             body: JSON.stringify({
                 content: `${sendText}`,
-                title: `${title}`
+                title: `${postTitle}`
                 
             })
         })
@@ -81,6 +89,13 @@ export default function Editor(props){
         .then(JSONresponse => console.log(JSONresponse))
         .catch(error => console.log(error));
         }else if(action === 'review'){
+            let grade;
+            if(!props.grade) {
+                grade=10;
+            }
+                else {
+                    grade=props.grade;
+                }
             console.log('review');
             console.log('Grade is' + props.grade)
             fetch(`http://localhost:8888/editor/user/${userId.userId}/${action}`, {
@@ -93,7 +108,7 @@ export default function Editor(props){
                 content: `${sendText}`,
                 reviewValue: `${reviewValue}`,
                 postId: `${props.postId}`,
-                review: `${props.grade}`
+                review: `${grade}`
             })
         })
         .then(response => response.json())
@@ -109,9 +124,8 @@ export default function Editor(props){
         <div className="editor-box">
             {props.divState === 'post' ?
                 <span className="title-box">
-                
-                <h3 style={{display:'inline', marginRight:'20px'}}>Title:</h3>
-                <input type="text" className="title-input" onChange={(e) => setTitle(e.target.value)}/>
+                <h5 style={{display:'inline', marginRight:'20px'}}>Title:</h5>
+                <input type="text" className="title-input" maxLength="30" onChange={(e) => setTitle(e.target.value)} defaultValue="Untitled"/>
             </span>
             :null
             }
@@ -150,7 +164,8 @@ export default function Editor(props){
                             ckfinder:{
                                 uploadUrl:'http://localhost:8888/ckuploads'
                             },
-                            baseFloatZIndex : 1
+                            baseFloatZIndex : 1,
+                            
                         }
                     }
 
@@ -162,6 +177,7 @@ export default function Editor(props){
                     </button>
                     <div>
                     </div>
+                    {text}
                 </span>
         </div>
         

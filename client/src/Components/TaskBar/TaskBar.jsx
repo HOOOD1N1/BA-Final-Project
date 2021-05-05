@@ -52,9 +52,9 @@ export default function TaskBar(props){
     
     return (
         <nav className="taskbar">
-            <Link to='/feed' style={{textDecoration:'none'}}><span className="logo">MyStories</span></Link>
+            <Link to='/feed' style={{textDecoration:'none'}}><span className="logo"><img src="http://localhost:8888/photos/MyStories.png" alt="My Stories"/></span></Link>
             <span className="searchbar">
-                <input type="search" name="search" id="search" placeholder="Search"  autocomplete="off" onClick={handleSearchShow} onKeyDown={(e) => handleSearch(e)}/>
+                <input type="search" name="search" id="search" placeholder="Search"  autocomplete="off" onClick={handleSearchShow} onKeyUp={(e) => handleSearch(e)}/>
                 <div id="search-results">
                     {results.map(result => {
                        return <Link to={`/profile/${result.id}`} style={{textDecoration: 'none', zIndex: 10}}>
@@ -69,12 +69,14 @@ export default function TaskBar(props){
                 </div>
             </span>
             <span className="right_side">
+            <img src="http://localhost:8888/photos/bell.png" alt="notifications" style={{width:'25px', height:'25px', margin:'auto 30px'}}/>
             <Link style={{textDecoration: "none", padding: "5px"}} to={`/profile/${user.userId}`} >
-                    <span className="image" style={{position:'relative', width:'80px'}}>
+                    <span className="taskbar-image" style={{position:'relative', width:'80px'}}>
                         <img style={{width: '40px', height:'40px', borderRadius: '50%', position: 'absolute', left: '0', top: '0'}} src={image} alt="user_image" className="profileImage"/>
-                        <p style={{position: 'absolute', right: '0', marginLeft:'20px', verticalAlign:'center', display:'inline'}}>{username}</p>    
+                        {/* <p style={{position: 'absolute', right: '0', marginLeft:'20px', verticalAlign:'center', display:'inline'}}>{username}</p>     */}
                     </span>
                 </Link>
+                
                 <button style={{cursor:'pointer'}}className="signout" onClick={handleLogOut}>
                     Sign Out
                 </button>

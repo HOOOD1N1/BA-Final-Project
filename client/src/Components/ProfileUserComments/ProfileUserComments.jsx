@@ -49,7 +49,7 @@ export default function ProfileUserComments(props) {
   }, []);
 
   return (
-    <div className="profile-comments">
+    <div className="profile-comments" >
       { comments?.map((card, i) => {
         return (
           <Card

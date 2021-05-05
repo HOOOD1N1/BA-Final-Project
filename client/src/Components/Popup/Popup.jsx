@@ -6,7 +6,7 @@ import PopupComments from '../PopupComments/PopupComments';
 import PopupReviews from '../PopupReviews/PopupReviews';
 import './Popup.css';
 import parse from 'html-react-parser';
-
+import {Link} from 'react-router-dom'
 
 export default function Popup(props){
     
@@ -27,8 +27,12 @@ export default function Popup(props){
             console.log('we set comments')
             handleChange(1);
         }
-            
-    }, [])
+        if(props.parent === 'main') {
+            document.getElementById("main-analytics").style.display = 'none';
+           return () => {document.getElementById("main-analytics").style.display = 'inline';} 
+
+        }
+            }, [])
 
     useEffect(() => {
         console.log(actionType)
@@ -63,15 +67,17 @@ export default function Popup(props){
                     <div className="infoBox">
                         <p style={{color: 'white'}}>{props.title}</p>
                         <span className="user-info">
+                            <Link to={`/profile/${props.userId}`} style={{textDecoration: 'none', }}>
+                            
                             <img src={props.userPhoto}
                              alt="" className="user-image"/>
-                            <a href="" className="username">{props.userName}</a>
-                            
+                            <p className="username">{props.userName}</p>
+                            </Link>
                         </span>
                         <h1 className="title">{title}</h1>
                     </div>
                     <div className="comment-editor">
-                    {actionType === 'reviews' ? <span><input id="grade" type="text" placeholder="Grade" onChange={(e) => {setReviewValue(e.target.value); console.log(e.target.value)}}/></span> : null}
+                    {actionType === 'reviews' ? <span><input id="grade" type="number" placeholder="Grade" min="1" max="10" defaultValue="10" onChange={(e) => {setReviewValue(e.target.value); console.log(e.target.value)}}/></span> : null}
                         <Editor divState={actionType} postId={props.postId} userId={props.userId} grade={reviewValue}/>
                     </div>
                     <div className="button-list">

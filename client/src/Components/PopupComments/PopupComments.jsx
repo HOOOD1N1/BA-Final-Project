@@ -46,6 +46,7 @@ export default function PopupComments(props) {
             currentUser={props.currentUser}
             image={card.profile_image}
             form='comments'
+            parent='popup'
           />
         );
       })}

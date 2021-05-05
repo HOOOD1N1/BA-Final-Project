@@ -11,10 +11,13 @@ import socketIOClient from "socket.io-client";
 export default function Chat(props) {
     const [username, setUsername] = useState('');
     const [image, setImage] = useState('');
+    const [messages, setMessages] = useState([]);
     const user = JSON.parse(localStorage.getItem('user'))
     
     useEffect(async()=> {
-
+        if(messages.length > 0) {
+            console.log("messages are " + messages)
+        }
         let photo = await fetch(`http://localhost:8888/taskbar/photo/${user.userId}`);
         let JSONphoto = await photo.json();
         //console.log("JSON photo is " + JSONphoto.profile_image)
@@ -23,7 +26,11 @@ export default function Chat(props) {
         console.log("The image is " + JSONphoto[0].profile_image)
         setImage(`http://localhost:8888/photos/${JSONphoto[0].profile_image}`);
         setUsername(JSONphoto[0].username)
-             
+        window.socket.on('notify', (payload) => {
+            const { authorUsername, message } = JSON.parse(payload);
+            setMessages(messages.push({sender: authorUsername, message: message}))
+        })
+
     },[])
 
     
@@ -37,16 +44,31 @@ export default function Chat(props) {
                </div>
             
         <div className="outer-chatbox">
-           <FriendsList/>
+           <FriendsList setMessages={setMessages}/>
            <div className="chatbox">
+           
                <div className="message-list">
-                   <ScrollToBottom>
-                   <Messages />
+               <ScrollToBottom>
+                   <Messages messages={messages}/>
                    </ScrollToBottom>
                </div>
+               
                <div className="chat-input">
-                   <input type="text" name="messageText" id="messageText"/>
-                   <button disabled>Send</button>
+                   <input type="text" name="messageText" id="chat-messageText"/>
+                   <button onClick={(e) => {
+                       e.preventDefault();
+                       let message = document.getElementById('chat-messageText').value;
+                       document.getElementById('chat-messageText').value = '';
+                       let sender = user.userId;
+                       let receiver = window.friend;
+                       let payload = {
+                            user1: sender,
+                             user2: receiver,
+                              message: message 
+                            }
+                        window.socket.emit("send", JSON.stringify(payload))
+
+                   }}>Send</button>
                </div>
            </div>
        </div>

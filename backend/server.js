@@ -8,11 +8,15 @@ const User = require("./controllers/User")
 const multiparty = require("connect-multiparty");
 const { json } = require("body-parser")
 const { pool } = require("./config/db/db")
-const chatRouter = require('./routes/chat-routes');
 var multer = require('multer')
 const cryptoRandomString = require('crypto-random-string');
 const { query } = require('express');
 const { type } = require('os');
+const chatRouter = require('./routes/chat-routes');
+const analyticsRouter = require('./routes/analytics');
+const Namespace = require('./controllers/Namespace')
+    // const { Session } = require('inspector');
+const Session = require("./controllers/Sessions.js")
 var upload = multer({
     storage: multer.diskStorage({
         destination: './photos/',
@@ -32,9 +36,15 @@ const MultiPartyMiddleWare = multiparty({ uploadDir: './photos' });
 app.use(cors())
 app.use(json())
 app.use('/photos', express.static(`${__dirname}/photos/`))
+app.use(analyticsRouter)
 
 app.post('/ckuploads', MultiPartyMiddleWare, (req, res) => {
-    console.log(req.files.upload);
+    console.log("Files to upload are ", req.files.upload);
+    let x = req.files.upload.path;
+    let y = x.split('\\');
+    let path = y[1];
+    res.send({ "uploaded": "true", "url": `http://localhost:8888/photos/${path}` })
+
 })
 app.use(chatRouter);
 app.post('/photo/:id', upload.single('uploaded_file'), async(req, res) => {
@@ -534,7 +544,6 @@ app.post('/register', async(req, res, next) => {
     next()
 })
 
-
 // socket.io
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -543,29 +552,55 @@ const io = socketIo(server, {
         methods: ["GET", "POST"]
     }
 });
-io.on("connection", (socket) => {
-    console.log("New user connected");
-    io.of('user');
-
-
-    socket.on("enter", async(payload) => {
-        const { user1, user2 } = JSON.parse(payload);
-        console.log('Connection solved')
-        console.log('user1', user1, 'user2', user2)
-        socket.join(`${user1}-${user2}`);
-        let key1 = `${user1}-${user2}`;
-        let key2 = `${user2}-${user1}`;
-        let result = await pool.query('SELECT message FROM messages WHERE chatroom=$1 OR chatroom=$2', [key1, key2])
-        console.log(result.rows)
-        if (result.rowCount >= 1)
-            socket.of('user').to(`${user1}-${user2}`).emit('messages', JSON.stringify({ messages: result.rows }))
-    })
-
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-
-    });
+app.post("/namespace/create", async(req, res) => {
+    // console.log(req.headers)
+    const splitted = req.headers.authorization.split('-')
+    const authorizationObject = {
+        userId: Number(splitted[0]),
+        sessionId: Number(splitted[1]),
+        sessionToken: splitted[2],
+    }
+    const createdNamespace = await Namespace.create(authorizationObject, io);
+    res.send(
+        JSON.stringify({
+            status: createdNamespace === true ? "success" : "error",
+        })
+    );
 });
+
+// io.of('/24').on("connection", async(socket) => {
+//     console.log("New user connected");
+//     const authorizationHeader = socket.handshake.headers.authorization;
+//     if (authorizationHeader) {
+//         const { userId, sessionToken, sessionId } = JSON.parse(authorizationHeader)
+//         const validSession = await Session.validate(authorizationHeader)
+//         if (validSession === true) {
+//             console.log('ENTERED_CREATE_SOCKET')
+//             io.of(`/${userId}`).emit('started_listening', `Listening to the ${userId}`)
+//         }
+//     }
+
+//     //io.of('user');
+
+
+//     socket.on("enter", async(payload) => {
+//         const { user1, user2 } = JSON.parse(payload);
+//         console.log('Connection solved')
+//         console.log('user1', user1, 'user2', user2)
+//         socket.join(`${user1}-${user2}`);
+//         let key1 = `${user1}-${user2}`;
+//         let key2 = `${user2}-${user1}`;
+//         let result = await pool.query('SELECT message FROM messages WHERE chatroom=$1 OR chatroom=$2', [key1, key2])
+//         console.log(result.rows)
+//         if (result.rowCount >= 1)
+//             socket.of('user').to(`${user1}-${user2}`).emit('messages', JSON.stringify({ messages: result.rows }))
+//     })
+
+//     socket.on("disconnect", () => {
+//         console.log("Client disconnected");
+
+//     });
+// });
 
 
 server.listen(PORT, (err) => {

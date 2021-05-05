@@ -3,11 +3,11 @@ import './Analitics.css';
 
 import Chart from 'chart.js';
 
-const renderChart = (ctx, data=0, labels, text) => {
+const renderChart = (type, ctx, data=0, labels=[], text="") => {
     Chart.defaults.global.defaultFontColor = "black";
     
      new Chart(ctx, {
-            type: "bar",
+            type: type,
             data: {
                 labels: labels,
                 datasets: [{
@@ -15,6 +15,7 @@ const renderChart = (ctx, data=0, labels, text) => {
                     
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         
                     ],
@@ -64,13 +65,13 @@ export default function Analitics(props){
         let data3 = [JSON.parse(newValues.totalReviews), JSON.parse(newValues.reviewsResult)];
 
         
-        renderChart(ctx, data1, ['Total Posts', 'Your posts'], 'Posts');
-        renderChart(ctx2, data2, ['Total Comments', 'Your comments'], 'Comments');
-        renderChart(ctx3, data3, ['Total Reviews', 'Your reviews'], 'Reviews');
+        renderChart('bar',ctx, data1, ['Total Posts', 'Your posts'], 'Posts');
+        renderChart('bar',ctx2, data2, ['Total Comments', 'Your comments'], 'Comments');
+        renderChart('bar',ctx3, data3, ['Total Reviews', 'Your reviews'], 'Reviews');
     })
 
     return (
-        <aside className="aside-analitics right ">
+        <aside className="aside-analitics right " id="main-analytics">
             <div className="chartjs-aside-wrapper">
                 <div id="canvas-1'1" style={{position: 'relative', marginTop:'10px', height: '150px', width:'100%'}}>
                 <canvas id="canvas-1"></canvas>

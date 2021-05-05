@@ -2,6 +2,7 @@ const { pool } = require('../config/db/db')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto-random-string');
 const cryptoRandomString = require('crypto-random-string');
+const Sessions = require('./Sessions')
 
 
 module.exports = {
@@ -52,5 +53,17 @@ module.exports = {
 
     },
     remove: async(params) => {},
+    validate: async(params) => {
+
+        const { userId, sessionId, sessionToken } = params;
+        if (userId && sessionId && sessionToken) {
+            const validSession = await pool.query('select id from sessions where id=$1 and user_id=$2 and session_token=$3', [Number(sessionId), Number(userId), sessionToken])
+            if (validSession.rowCount > 0) {
+                return true
+            } else {
+                return false
+            }
+        } else return false;
+    }
 
 }

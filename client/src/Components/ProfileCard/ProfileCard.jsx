@@ -143,7 +143,7 @@ export default function ProfileCard() {
           <img
             className="profile-img"
             src={photo}
-            alt="user-picture"
+            alt="user"
           />
           
         </picture>

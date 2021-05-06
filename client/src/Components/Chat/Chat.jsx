@@ -26,17 +26,39 @@ export default function Chat(props) {
         console.log("The image is " + JSONphoto[0].profile_image)
         setImage(`http://localhost:8888/photos/${JSONphoto[0].profile_image}`);
         setUsername(JSONphoto[0].username)
-        window.socket.on('notify', (payload) => {
+        if(window.socket)window.socket.on('notify', (payload) => {
             const { authorUsername, message } = JSON.parse(payload);
             setMessages(messages.push({sender: authorUsername, message: message}))
         })
+        else {
+            const createNamespaceReq = await fetch(`http://localhost:8888/namespace/create`, {
+            method: 'post',
+            headers:{
+                'Content-type': 'application/json',
+                authorization: `${user.userId}-${user.sessionId}-${user.sessionToken}`
+            }
+        })
+        const validSessionResponse = await createNamespaceReq.json()
+        if(validSessionResponse.status === 'success'){
+            if(!window.socket) window.socket = socketIOClient(`http://localhost:8888/${user.userId}`, {
+                extraHeaders: {
+                    authorization: JSON.stringify(user)
+                }
+            });
+            window.socket.on('started_listening', (params)=>{
+                console.log('started_listening',params)
+            })
+        }else{
+            window.alert('Session is invalid. Please log in again.')
+        }
+        }
 
     },[])
 
     
     return (
-        <div>
-            <TaskBar />
+        <div className="chat-page">
+            <TaskBar history={props.history}/>
             <div className="chat-component">
             <div className="topBar">
                 <img src={image} alt="user" className="chat-user-image"/>

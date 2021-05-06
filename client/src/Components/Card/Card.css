@@ -7,6 +7,7 @@
     margin: 10px auto;
     width: 100%;
     border: 1px solid black;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .child-card {
@@ -37,6 +38,7 @@
     max-height: 800px;
     overflow-y: auto;
     width: inherit;
+    word-break: break-word;
 }
 
 .actions {
@@ -61,6 +63,8 @@
 
 .card_button {
     cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .card_button p {
@@ -71,6 +75,7 @@
 .card_button:hover {
     color: blue;
     border-bottom: 1px solid blue;
+    border: 1px blue solid;
 }
 
 .card_button p:hover {
@@ -80,4 +85,12 @@
 .card_button img:hover {
     color: #0000ff;
     background: url('http://localhost:8888/photos/blue-like.png');
+}
+
+.like-img {
+    background-image: url('http://localhost:8888/photos/like.png');
+}
+
+.like-img:hover {
+    background-image: url('http://localhost:8888/photos/blue-like.png');
 }

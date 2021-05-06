@@ -92,9 +92,9 @@ function Card(props) {
                 
                 <span className="message">{parse(props.message)}</span>
                 <span className="actions">
-                    <span className="card_button like" onClick={handlePostLike}> <img src='http://localhost:8888/photos/like.png' alt="" width="20px" height="20px" style={{margin:'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Like {numberLikes}</p></span>
-                    <span className="card_button comment" onClick={() => {setPopupOn(true); setReview(false)}}><img src='http://localhost:8888/photos/chat.png' alt="" width="20px" height="20px" style={{margin: 'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Comment</p></span>
-                    <span className="card_button review" onClick={() =>{ setPopupOn(true); setReview(true)}}><img src='http://localhost:8888/photos/writing.png' alt="" width="20px" height="20px" style={{margin:'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Review</p></span>
+                    <span className="card_button like" onClick={handlePostLike}> <img className="like-img" src='http://localhost:8888/photos/like.png' alt="Like" width="20px" height="20px" style={{margin:'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Like {numberLikes}</p></span>
+                    <span className="card_button comment" onClick={() => {setPopupOn(true); setReview(false)}}><img src='http://localhost:8888/photos/chat.png' alt="Comment" width="20px" height="20px" style={{margin: 'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Comment</p></span>
+                    <span className="card_button review" onClick={() =>{ setPopupOn(true); setReview(true)}}><img src='http://localhost:8888/photos/writing.png' alt="Review" width="20px" height="20px" style={{margin:'auto 0'}}/><p style={{display:'inline', margin:'auto 0'}}>Review</p></span>
                 </span>
                 </div>
             { popupOn && <Popup close={setPopupOn} userName={props.username} userPhoto={userPhoto} message={props.message} userId={props.userId} postId={props.postId} button={review}

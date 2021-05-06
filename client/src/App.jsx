@@ -30,11 +30,11 @@ class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                  <Route path="/" exact component={Login} />
-                <Route path="/feed" component={Main}/>
+                <Route path="/feed" component={Main} history={this.props.history}/>
                 <Route path="/profile/:userId" component={Profile} history={this.props.history}/>
-                <Route path="/analitics/:userId" component={AnaliticsPage}/>
-                <Route path="/test" component={BasicComponent}/>
-                <Route path='/chat' component={Chat}/>     
+                <Route path="/analitics/:userId" component={AnaliticsPage} history={this.props.history}/>
+                <Route path="/test" component={BasicComponent} history={this.props.history}/>
+                <Route path='/chat' component={Chat} history={this.props.history}/>     
                 </Switch>
                 {/* <Profile /> */}
             </BrowserRouter>

@@ -23,33 +23,35 @@ import ProfileUserPosts from '../ProfileUserPosts/ProfileUserPosts';
 
 
     return (
-        <div className="profile-page">
+        <div >
             <TaskBar history={props.history}/>
+            <div className="profile-page">
             <ProfileCard/>
             <ul className="buttons">
                 <li className="button" >
-                    <button id ='user-posts' onClick={()=>{
+                    <span id ='user-posts' onClick={()=>{
                         console.log('clicked on posts')
                         setItem('user-posts');
-                    }}>Posts</button>
+                    }}>Posts</span>
                 </li>
                 <li className="button" >
-                    <button id ='user-reviews' onClick={()=>{
+                    <span id ='user-reviews' onClick={()=>{
                         console.log('clicked on reviews')
                         setItem('user-reviews');
-                    }}>Reviews</button>
+                    }}>Reviews</span>
                 </li>
                 <li className="button" >
-                    <button id ='user-comments' onClick={()=>{
+                    <span id ='user-comments' onClick={()=>{
                         console.log('clicked on comments')
                         setItem('user-comments');
-                    }}>Comments</button>
+                    }}>Comments</span>
                 </li>
             </ul>
             {/* <CardList page='profile' type={item}/> */}
            {item === 'user-comments' ? <ProfileUserComments routerUser={props.routerUser} parent='profile'/> : null}
            {item === 'user-reviews' ? <ProfileUserReviews routerUser={props.routerUser} parent='profile'/> : null}
            {item === 'user-posts' ? <ProfileUserPosts routerUser={props.routerUser} parent='profile'/> : null}
+        </div>
         </div>
     );
 }

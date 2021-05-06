@@ -57,18 +57,16 @@
     border-bottom: 1px white solid;
 }
 
-ul {
+.popup-buttons {
+    cursor: pointer;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
 }
 
-.buttons {
-    cursor: pointer;
-}
-
-.buttons li {
+.popup-buttons li {
     color: white;
+    list-style: none;
 }
 
 .user-image {

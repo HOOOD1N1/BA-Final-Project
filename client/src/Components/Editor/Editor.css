@@ -2,7 +2,7 @@
     width: 100%;
     text-align: left;
     margin-top: 10px;
-    border: 1px red solid;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
     margin-bottom: 5px;
 }
 
@@ -16,14 +16,19 @@ p {
 
 .post-box {
     float: right;
-    margin: 5px 30px;
+    margin: 5px 20px;
     width: 100px;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .title-box {
-    margin-top: 20px;
+    margin-top: 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    height: 35px;
+    margin-right: 20px;
 }
 
 .table {
@@ -36,4 +41,14 @@ td {
 
 tr {
     border: 1px solid black;
+}
+
+.editor_card_button {
+    width: 70px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.editor_card_button:hover {
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }

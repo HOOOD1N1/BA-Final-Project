@@ -10,6 +10,7 @@ import CardList from '../CardList/CardList';
 import MainPosts from '../MainPosts/MainPosts';
 import Analitics from '../Analitics/Analitics'
 import {Link} from 'react-router-dom';
+import socketIOClient from "socket.io-client";
 
 export default function Main(props) {
     const [messages, setMessage] = useState([]);
@@ -18,6 +19,7 @@ export default function Main(props) {
     const [text, setText] = useState('');
   
     useEffect(()=> {
+        
         var user = JSON.parse(localStorage.getItem('user'));
          fetch(`http://localhost:8888/main/user/${user.userId}`, {
              'method': 'POST'
@@ -27,13 +29,50 @@ export default function Main(props) {
          .catch(error => console.log(error));
          //.then(username => setUserName(username))
     },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async() => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const {userId, sessionId, sessionToken} = user
+        const createNamespaceReq = await fetch(`http://localhost:8888/namespace/create`, {
+            method: 'post',
+            headers:{
+                'Content-type': 'application/json',
+                authorization: `${userId}-${sessionId}-${sessionToken}`
+            }
+        })
+        const validSessionResponse = await createNamespaceReq.json()
+        if(validSessionResponse.status === 'success'){
+            if(!window.socket) window.socket = socketIOClient(`http://localhost:8888/${userId}`, {
+                extraHeaders: {
+                    authorization: JSON.stringify(user)
+                }
+            });
+            window.socket.on('started_listening', (params)=>{
+                console.log('started_listening',params)
+            })
+        }else{
+            window.alert('Session is invalid. Please log in again.')
+        }
+    }, [])
     
 
     return (
         <div>
             <TaskBar user={userName} history={props.history}/>
             <div className="main">
-            <aside className="left aside">
+                <div className="top-links-list">
+                    <ul className="links-list">
+                    <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
+                    <li className="list-item">Analytics</li>
+                    </Link>
+                    
+                    <li className="list-item">Rooms</li>
+                    <Link style={{textDecoration: 'none'}} to={`/chat/${JSON.parse(localStorage.getItem('user')).userId}`}>
+                    <li className="list-item">Chat</li>
+                    </Link>  
+                    </ul>
+                </div>
+            <aside className="left aside" id="main-left-box">
                 <span className="infos">
                 <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`} image={image}>
                 <picture>
@@ -41,7 +80,7 @@ export default function Main(props) {
                 </picture>
                 <span className="user_info">
                     
-                    <p style={{display:'inline'}}>{userName}</p>
+                    <p style={{display:'inline', verticalAlign:'super'}}>{userName}</p>
                     
                 
                 </span>
@@ -58,19 +97,12 @@ export default function Main(props) {
                     <li className="list-item">Chat</li>
                     </Link>
                     
-                </ul>            
+                </ul>         
             </aside>
             <span className="feedbar">
                 <div className="editor-box-parent">
-                    <span style={{marginBottom:'10px', height:'50px'}}>
-                        <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`}>
-                        <img className="editor-image" style={{borderRadius: '50%', width: '50px', height: '50px'}} src={image} alt="profile"/>
-                        
-                        <p style={{display:'inline', margin: 'auto 0', verticalAlign: 'super'}}>{userName}</p>
-                        </Link>
-                        
-                    </span>
-                <Editor divState='post' userId={JSON.parse(localStorage.getItem('user')).userId}/>
+                    
+                <Editor divState='post' userId={JSON.parse(localStorage.getItem('user')).userId} image={image} userName={userName} parent='main'/>
                 </div>
             
                 <div className="feed">

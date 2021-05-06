@@ -1,3 +1,7 @@
+.chat-page {
+    margin-top: 10vh;
+}
+
 .chat-component {
     width: 75vh;
     /* position: relative; */

@@ -2,6 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import './Editor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {Link} from 'react-router-dom'
 import Eeditor from '@ckeditor/ckeditor5-build-classic';
 
 
@@ -24,6 +25,7 @@ export default function Editor(props){
             setType('review')
             console.log('change to review')
         }
+    
         
     },[])
     
@@ -122,10 +124,25 @@ export default function Editor(props){
 
     return (
         <div className="editor-box">
-            {props.divState === 'post' ?
+            {props.divState === 'post' && props.parent === 'main' ?
                 <span className="title-box">
-                <h5 style={{display:'inline', marginRight:'20px'}}>Title:</h5>
-                <input type="text" className="title-input" maxLength="30" onChange={(e) => setTitle(e.target.value)} defaultValue="Untitled"/>
+                {/* <h5 style={{display:'inline', marginRight:'20px'}}>Title:</h5> */}
+                <input type="text" className="title-input" maxLength="30" style={{marginLeft:'2px'}} onChange={(e) => setTitle(e.target.value)} placeholder="Title:"/>
+                <span id="main-editor-user" style={{marginBottom:'10px', height:'50px'}}>
+                        <Link style={{textDecoration: 'none'}} to={`/profile/${JSON.parse(localStorage.getItem('user')).userId}`}>
+                        <img className="editor-image" style={{borderRadius: '50%'}} src={props.image} alt="profile"/>
+                        
+                        <p style={{display:'inline', margin: 'auto 0', verticalAlign: 'super'}}>{props.userName}</p>
+                        </Link>
+                        
+                    </span>
+            </span>
+            :null
+            }
+            {props.divState === 'post' && props.parent !== 'main' ?
+                <span className="title-box">
+                {/* <h5 style={{display:'inline', marginRight:'20px'}}>Title:</h5> */}
+                <input type="text" className="title-input" maxLength="30" onChange={(e) => setTitle(e.target.value)} placeholder="Title:"/>
             </span>
             :null
             }
@@ -172,12 +189,11 @@ export default function Editor(props){
                     style={{zIndex: 1}}/>
             </div>
                 <span className="button-span">
-                    <button className="card_button post-box" onClick={e => handleOnClick(e)}>
+                    <button className="editor_card_button post-box" onClick={e => handleOnClick(e)}>
                         Post
                     </button>
                     <div>
                     </div>
-                    {text}
                 </span>
         </div>
         

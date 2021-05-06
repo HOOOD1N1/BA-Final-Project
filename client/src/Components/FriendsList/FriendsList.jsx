@@ -1,7 +1,6 @@
 import React from 'react';
 import './FriendsList.css';
 import {useState, useEffect} from 'react';
-import socketIOClient from "socket.io-client";
 export default function FriendsList(props) {
     const [friends, setFriends] = useState([]);
 
@@ -24,26 +23,7 @@ export default function FriendsList(props) {
         setFriends(newResult.results)
         window.friend = newResult.results[0].userid
         console.log("Window.friend is", window.friend)
-        const createNamespaceReq = await fetch(`http://localhost:8888/namespace/create`, {
-            method: 'post',
-            headers:{
-                'Content-type': 'application/json',
-                authorization: `${userId}-${sessionId}-${sessionToken}`
-            }
-        })
-        const validSessionResponse = await createNamespaceReq.json()
-        if(validSessionResponse.status === 'success'){
-            if(!window.socket) window.socket = socketIOClient(`http://localhost:8888/${userId}`, {
-                extraHeaders: {
-                    authorization: JSON.stringify(user)
-                }
-            });
-            window.socket.on('started_listening', (params)=>{
-                console.log('started_listening',params)
-            })
-        }else{
-            window.alert('Session is invalid. Please log in again.')
-        }
+        
         
         return function() {
             console.log("BOY< PLEASE WORK")

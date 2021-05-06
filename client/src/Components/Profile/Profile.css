@@ -1,12 +1,27 @@
+.profile-page {
+    margin-top: 10vh;
+}
+
 .buttons {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
     align-items: center;
     border-bottom: 1px black solid;
-    padding-bottom: 30px;
+    list-style: none;
+    height: 30px;
+    margin-top: 0;
 }
 
-li {
+.button {
     color: black;
+    height: inherit;
+    border: 1px black solid;
+    cursor: pointer;
+    width: 100px;
+}
+
+.button * {
+    height: inherit;
+    margin: 0 auto;
 }

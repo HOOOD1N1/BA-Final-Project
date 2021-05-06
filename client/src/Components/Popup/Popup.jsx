@@ -81,7 +81,7 @@ export default function Popup(props){
                         <Editor divState={actionType} postId={props.postId} userId={props.userId} grade={reviewValue}/>
                     </div>
                     <div className="button-list">
-                        <ul className="buttons">
+                        <ul className="popup-buttons">
                             <li onClick={()=> {setActionType('comments');handleChange(1)}}><span style={{color: `${color1}`}} className="button1">Comments</span></li>
                             <li onClick={()=> {setActionType('reviews');handleChange(2)}}><span style={{color: `${color2}`}} className="button2">Reviews</span></li>
                         </ul>

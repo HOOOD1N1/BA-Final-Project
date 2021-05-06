@@ -53,9 +53,9 @@ export default function TaskBar(props){
     return (
         <nav className="taskbar">
             <Link to='/feed' style={{textDecoration:'none'}}><span className="logo"><img src="http://localhost:8888/photos/MyStories.png" alt="My Stories"/></span></Link>
-            <span className="searchbar">
+            <span className="searchbar" >
                 <input type="search" name="search" id="search" placeholder="Search"  autocomplete="off" onClick={handleSearchShow} onKeyUp={(e) => handleSearch(e)}/>
-                <div id="search-results">
+                <div id="search-results" style={{display:'none'}}>
                     {results.map(result => {
                        return <Link to={`/profile/${result.id}`} style={{textDecoration: 'none', zIndex: 10}}>
                         <div className="searchResult">
@@ -69,18 +69,24 @@ export default function TaskBar(props){
                 </div>
             </span>
             <span className="right_side">
-            <img src="http://localhost:8888/photos/bell.png" alt="notifications" style={{width:'25px', height:'25px', margin:'auto 30px'}}/>
+
+            <img src="http://localhost:8888/photos/bell.png" alt="notifications" style={{width:'25px', height:'25px', margin:'auto', marginRight:'20px'}}/>
             <Link style={{textDecoration: "none", padding: "5px"}} to={`/profile/${user.userId}`} >
-                    <span className="taskbar-image" style={{position:'relative', width:'80px'}}>
-                        <img style={{width: '40px', height:'40px', borderRadius: '50%', position: 'absolute', left: '0', top: '0'}} src={image} alt="user_image" className="profileImage"/>
-                        {/* <p style={{position: 'absolute', right: '0', marginLeft:'20px', verticalAlign:'center', display:'inline'}}>{username}</p>     */}
+                    <span className="taskbar-image" style={{position:'relative', width:'40px'}}>
+                        <span><img style={{width: '40px', height:'40px', borderRadius: '50%', position: 'absolute', left: '0', top: '0'}} src={image} alt="user_image" className="profileImage"/></span>
+                        
                     </span>
                 </Link>
-                
-                <button style={{cursor:'pointer'}}className="signout" onClick={handleLogOut}>
+                <span id="signout-span">
+                <button style={{cursor:'pointer'}} className="signout" onClick={handleLogOut}>
                     Sign Out
                 </button>
             </span>
+            <span id="more">
+                <img id="more-button" src="http://localhost:8888/photos/ellipsis.png" alt="More" />
+            </span>
+            </span>
+            
 
             
         </nav>

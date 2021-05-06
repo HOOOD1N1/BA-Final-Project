@@ -123,7 +123,7 @@ import { render } from 'react-dom';
     const renderPosts = () => {
         return (
             <section className="analytics-posts" style={{display:'flex', flexFlow:'column nowrap', width:'100vw', justifyContent:'space-evenly', marginBottom:"20px"}}>
-                    <div id="analytics-post-1">
+                    <div id="analytics-post-1" >
                     <Card 
                     username={posts[0].username}
                     userId={Number(posts[0].id)}
@@ -137,7 +137,7 @@ import { render } from 'react-dom';
                     />
                     </div>
                     
-                    <div id="analytics-post-2">
+                    <div id="analytics-post-2" >
                     <Card 
                     username={posts[1].username}
                     userId={Number(posts[1].id)}
@@ -152,7 +152,7 @@ import { render } from 'react-dom';
                     
                     </div>
                     
-                    <div id="analytics-post-3">
+                    <div id="analytics-post-3" >
                     <Card 
                     username={posts[2].username}
                     userId={Number(posts[2].id)}
@@ -170,8 +170,9 @@ import { render } from 'react-dom';
     }
 
     return(
-        <div className="analitics-page">
-            <Taskbar image={props.image}/>
+            <div className="analytics-full-page">
+            <Taskbar image={props.image} history={props.history}/>
+            <div className="analytics-page">
             <section className="title_section" style={{borderBottom: '1px black solid'}}>
                 <h1 className="title_card" style={{textAlign:'center'}}>
                     Analytics
@@ -211,6 +212,7 @@ import { render } from 'react-dom';
             
             </section>
             
+        </div>
         </div>
         );
     }

@@ -57,6 +57,8 @@
     width: 10%;
     background-color: #385898;
     color: white;
+    min-width: 47px;
+    border-radius: 5px;
 }
 
 .chat-user-image {

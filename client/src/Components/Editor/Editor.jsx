@@ -25,8 +25,15 @@ export default function Editor(props){
             setType('review')
             console.log('change to review')
         }
-    
-        
+        var element = document.getElementsByClassName("ck ck-dropdown");
+        // do{
+        //       
+        // }while(element[i])
+        element[1].classList.add("display-none");
+        element[1].style.display = 'none'; 
+        element[2].classList.add("display-none");
+        element[2].style.display = 'none';
+
     },[])
     
 
@@ -146,14 +153,14 @@ export default function Editor(props){
             </span>
             :null
             }
-            {props.divState === 'review' ?
+            {/* {props.divState === 'review' ?
                 <span className="review-box">
                 
                 <h3 style={{display:'inline', marginRight:'20px'}}>Grade:</h3>
                 <input type="text" className="review-input" onChange={(e) => setReviewValue(e.target.value)}/>
             </span>
             :null
-            }
+            } */}
 
             <div className="editor">
                     
@@ -189,6 +196,7 @@ export default function Editor(props){
                     style={{zIndex: 1}}/>
             </div>
                 <span className="button-span">
+                {props.divState === 'reviews' ? <span><input id="grade" type="number" placeholder="Grade" min="1" max="10" defaultValue="10" onChange={(e) => {props.setReviewValue(e.target.value); console.log(e.target.value)}}/></span> : null}
                     <button className="editor_card_button post-box" onClick={e => handleOnClick(e)}>
                         Post
                     </button>

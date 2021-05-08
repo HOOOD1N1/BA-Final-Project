@@ -1,6 +1,7 @@
 .analitics {
     border: 1px solid black;
     display: inline;
+    background-color: white;
 }
 
 .right {
@@ -8,6 +9,12 @@
     /* height: 300px; */
     max-height: 500px;
     border-radius: 10px 0 0 10px;
+    background-color: white;
+    box-shadow: -1px 1px black;
+}
+
+.right:hover {
+    box-shadow: -2px 1px black;
 }
 
 .aside-analitics {

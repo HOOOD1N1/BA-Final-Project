@@ -1,6 +1,6 @@
-/* html {
-    width: 100%;
-} */
+html {
+    background-color: #fff0e5;
+}
 
 .links-list {
     list-style: none;
@@ -22,7 +22,7 @@ p {
 }
 
 .main {
-    margin-top: 10vh;
+    margin-top: 15vh;
 }
 
 
@@ -42,8 +42,13 @@ p {
     float: left;
     border-right: 1px black solid;
     height: 300px;
-    margin-right: 7px;
     border-radius: 0 6% 6% 0;
+    background-color: white;
+    box-shadow: 1px 2px black;
+}
+
+.left:hover {
+    box-shadow: 2px 2px black;
 }
 
 .aside-analitics {
@@ -96,6 +101,11 @@ p {
 .editor-box-parent {
     border: 2px black solid;
     box-shadow: 2px 2px rgba(0, 0, 0, 0.4);
+    background-color: white;
+}
+
+.editor-box-parent:hover {
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 
 .list-item {
@@ -104,6 +114,12 @@ p {
 }
 
 @media screen and (max-width: 500px) {
+    .top-links-list {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 900px) {
     .left {
         display: none;
     }
@@ -111,9 +127,6 @@ p {
         display: none;
     }
     .feedbar {
-        width: 100vw;
-    }
-    .top-links-list {
-        display: block;
+        width: 95vw;
     }
 }

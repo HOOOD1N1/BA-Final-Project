@@ -16,9 +16,13 @@
 .button {
     color: black;
     height: inherit;
-    border: 1px black solid;
     cursor: pointer;
     width: 100px;
+    text-align: center;
+}
+
+.button:hover {
+    border: 1px black solid;
 }
 
 .button * {

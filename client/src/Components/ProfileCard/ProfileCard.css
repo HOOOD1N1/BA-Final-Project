@@ -48,13 +48,16 @@
     display: none;
 }
 
-.right-side {
+.rightside {
     max-height: 50vh;
+    background-color: white;
 }
 
 @media screen and (max-width: 750px) {
     .profile-card {
-        justify-content: center;
+        flex-flow: column nowrap;
+        height: 1000px;
+        align-items: flex-end;
     }
     .profile-img {
         position: absolute;

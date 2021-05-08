@@ -31,35 +31,35 @@ export default function Main(props) {
     },[])
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const {userId, sessionId, sessionToken} = user
-        const createNamespaceReq = await fetch(`http://localhost:8888/namespace/create`, {
-            method: 'post',
-            headers:{
-                'Content-type': 'application/json',
-                authorization: `${userId}-${sessionId}-${sessionToken}`
-            }
-        })
-        const validSessionResponse = await createNamespaceReq.json()
-        if(validSessionResponse.status === 'success'){
-            if(!window.socket) window.socket = socketIOClient(`http://localhost:8888/${userId}`, {
-                extraHeaders: {
-                    authorization: JSON.stringify(user)
-                }
-            });
-            window.socket.on('started_listening', (params)=>{
-                console.log('started_listening',params)
-            })
-        }else{
-            window.alert('Session is invalid. Please log in again.')
-        }
+        // const user = JSON.parse(localStorage.getItem("user"));
+        // const {userId, sessionId, sessionToken} = user
+        // const createNamespaceReq = await fetch(`http://localhost:8888/namespace/create`, {
+        //     method: 'post',
+        //     headers:{
+        //         'Content-type': 'application/json',
+        //         authorization: `${userId}-${sessionId}-${sessionToken}`
+        //     }
+        // })
+        // const validSessionResponse = await createNamespaceReq.json()
+        // if(validSessionResponse.status === 'success'){
+        //     if(!window.socket) window.socket = socketIOClient(`http://localhost:8888/${userId}`, {
+        //         extraHeaders: {
+        //             authorization: JSON.stringify(user)
+        //         }
+        //     });
+        //     window.socket.on('started_listening', (params)=>{
+        //         console.log('started_listening',params)
+        //     })
+        // }else{
+        //     window.alert('Session is invalid. Please log in again.')
+        // }
     }, [])
     
 
     return (
         <div>
             <TaskBar user={userName} history={props.history}/>
-            <div className="main">
+            <div className="main" id="main-div">
                 <div className="top-links-list">
                     <ul className="links-list">
                     <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>

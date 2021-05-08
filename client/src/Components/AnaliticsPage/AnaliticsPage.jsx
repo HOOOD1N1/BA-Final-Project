@@ -181,14 +181,14 @@ import { render } from 'react-dom';
 
             <h3 className="subtitle">General Data</h3>
             <section >
-                <section id="pies" style={{width:'100vw', height: '40vh'}}>
-                    <div id="pie1" style={{display:'inline-block', width:'33vw', height: '40vh'}}>
+                <section id="pies" className="pies">
+                    <div id="pie1" className="pie">
                         <canvas id="canvas1" ></canvas>
                     </div>
-                    <div id="pie2" style={{display:'inline-block',position:'relative',width:'33vw', height: '40vh'}}>
+                    <div id="pie2"className="pie" >
                         <canvas id="canvas2"></canvas>
                     </div>
-                    <div id="pie3" style={{display:'inline-block',position:'relative',width:'33vw', height: '40vh'}}>
+                    <div id="pie3" className="pie" >
                         <canvas id="canvas3"></canvas>
                     </div>
                 </section>
@@ -198,13 +198,13 @@ import { render } from 'react-dom';
                  }
                 <h3 className="subtitle">Personal Data</h3>
                 <section id="bars" style={{width:'100vw', height: '50vh'}}>
-                <div id="bar1" style={{display:'inline-block', width:'33vw', height:'50vh'}}>
+                <div id="bar1" className="bars">
                         <canvas id="canvas4" ></canvas>
                     </div>
-                    <div id="bar2" style={{display:'inline-block',width:'33vw', height:'50vh'}}>
+                    <div id="bar2" className="bars">
                         <canvas id="canvas5"></canvas>
                     </div>
-                    <div id="bar3" style={{display:'inline-block',width:'33vw', height:'50vh'}}>
+                    <div id="bar3" className="bars" >
                         <canvas id="canvas6"></canvas>
                     </div>
 

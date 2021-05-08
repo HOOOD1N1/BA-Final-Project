@@ -8,6 +8,11 @@
     width: 100%;
     border: 1px solid black;
     box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+    background-color: white;
+}
+
+.card:hover {
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .child-card {
@@ -31,7 +36,6 @@
 }
 
 .message-box {
-    border-bottom: 1px black solid;
     display: flex;
     flex-flow: column nowrap;
     max-height: 900000px;
@@ -46,19 +50,20 @@
     flex-flow: row nowrap;
     border-bottom: 1px black solid;
     justify-content: space-around;
-    /* position: relative;
+    border-top: 1px black solid;
+    /*  position: relative;
     bottom: 0; */
 }
 
 .message {
     width: 100%;
     word-wrap: break-word;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .message>* {
     overflow-wrap: break-word;
+    padding-left: 10px;
+    padding-right: 5px;
 }
 
 .card_button {
@@ -70,6 +75,8 @@
 .card_button p {
     position: relative;
     top: -3px;
+    display: inline;
+    margin: auto 0;
 }
 
 .card_button:hover {
@@ -93,4 +100,19 @@
 
 .like-img:hover {
     background-image: url('http://localhost:8888/photos/blue-like.png');
+}
+
+@media screen and (max-width: 901px) {
+    .info {
+        display: flex;
+        flex-flow: row nowrap;
+        height: 60px;
+        justify-content: space-between;
+    }
+    .info * {
+        margin-right: 20px;
+    }
+    .card_button p {
+        display: none;
+    }
 }

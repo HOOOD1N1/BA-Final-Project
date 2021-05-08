@@ -33,7 +33,7 @@ export default function PopupComments(props) {
   }, []);
 
   return (
-    <div className="profile-comments">
+    <div className="popup-profile-comments">
       { comments?.map((card, i) => {
         return (
           <Card

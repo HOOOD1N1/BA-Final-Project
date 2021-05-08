@@ -1,3 +1,9 @@
 .list {
     width: 100%;
 }
+
+.profile-reviews {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}

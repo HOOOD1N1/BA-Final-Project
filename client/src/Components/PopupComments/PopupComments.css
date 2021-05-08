@@ -1,3 +1,34 @@
-.profile-comments {
+.popup-profile-comments {
     color: white;
+}
+
+.popup-profile-comments .child-card .info {
+    background-color: #242526;
+}
+
+.popup-profile-comments .child-card {
+    background-color: #242526;
+    border: 1px solid #242526;
+}
+
+.popup-profile-comments .child-card .message-box {
+    background-color: #242526;
+}
+
+.popup-profile-comments .child-card p {
+    color: white
+}
+
+.popup-profile-comments .child-card {
+    width: 99%;
+}
+
+.cardlist {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.cardlist::-webkit-scrollbar {
+    display: none;
 }

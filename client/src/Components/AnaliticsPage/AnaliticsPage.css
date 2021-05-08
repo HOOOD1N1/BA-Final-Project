@@ -22,4 +22,45 @@
 .subtitle {
     margin: 0 auto;
     text-align: center;
+    margin-top: 40px;
+}
+
+.pie {
+    position: relative;
+    display: inline-block;
+    width: 33vw;
+    height: 30vh;
+}
+
+.pies {
+    width: 100vw;
+    height: 40vh;
+}
+
+canvas {
+    background-color: white;
+}
+
+.bars {
+    display: inline-block;
+    width: 33vw;
+    height: 50vh;
+}
+
+@media screen and (max-width: 900px) {
+    #pies {
+        height: auto;
+    }
+    .pie {
+        display: block;
+        width: 50vw;
+        height: 17vh;
+        margin: 0 auto;
+        margin-bottom: 17vh;
+    }
+    #bars .bars {
+        display: block;
+        width: 50vw;
+        margin: 0 auto;
+    }
 }

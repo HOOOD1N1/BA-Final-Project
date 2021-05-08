@@ -49,9 +49,13 @@ export default function TaskBar(props){
         let newResults = await result.json()
         setResults(newResults.results)
     }
+    // const showMoreList = () => {
+    //     let x = document.getElementById("more-list-items");
+    //     x.style.display = 'block';
+    // }
     
     return (
-        <nav className="taskbar">
+        <nav className="taskbar" id="taskbar-id">
             <Link to='/feed' style={{textDecoration:'none'}}><span className="logo"><img src="http://localhost:8888/photos/MyStories.png" alt="My Stories"/></span></Link>
             <span className="searchbar" >
                 <input type="search" name="search" id="search" placeholder="Search"  autocomplete="off" onClick={handleSearchShow} onKeyUp={(e) => handleSearch(e)}/>
@@ -83,7 +87,14 @@ export default function TaskBar(props){
                 </button>
             </span>
             <span id="more">
-                <img id="more-button" src="http://localhost:8888/photos/ellipsis.png" alt="More" />
+                <img id="more-button" src="http://localhost:8888/photos/ellipsis.png" alt="More" /*onClick={showMoreList()}*/ />
+                <div id="more-list">
+                    <ul className="more-list-items">
+                    <li id="more-profile">Profile</li>
+                    <li id="more-signout">Sign Out</li>
+                    </ul>
+                    
+                </div>
             </span>
             </span>
             

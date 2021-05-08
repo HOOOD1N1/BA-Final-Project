@@ -39,6 +39,9 @@ export default function Popup(props){
     }, [actionType])
 
     const clickUnmount =() => {
+        document.getElementById("taskbar-id").style.visibility='visible';
+        document.getElementById("main-analytics").style.visibility='visible';
+
         props.close();
         
     }
@@ -53,8 +56,8 @@ export default function Popup(props){
     }
 
     return (
-        <div className="popup">
-            <div className="close" onClick={clickUnmount}></div>
+        <div className="popup" id="popup-div">
+            <div className="close" onClick={clickUnmount}><p>✕</p></div>
             <div className="cardBox">
                 <span className="messages">
                     <div className="messages_text" style={{padding: "30px"}}>
@@ -65,7 +68,6 @@ export default function Popup(props){
                 </span>
                 <span className="right-card">
                     <div className="infoBox">
-                        <p style={{color: 'white'}}>{props.title}</p>
                         <span className="user-info">
                             <Link to={`/profile/${props.userId}`} style={{textDecoration: 'none', }}>
                             
@@ -74,11 +76,16 @@ export default function Popup(props){
                             <p className="username">{props.userName}</p>
                             </Link>
                         </span>
-                        <h1 className="title">{title}</h1>
+                        <h1 className="popup-title" style={{color: 'white'}}>{props.title}</h1>
+                        <div id="time-of-post">
+                            <p id="post-date">
+                                Posted in
+                            </p>
+                        </div>
                     </div>
                     <div className="comment-editor">
-                    {actionType === 'reviews' ? <span><input id="grade" type="number" placeholder="Grade" min="1" max="10" defaultValue="10" onChange={(e) => {setReviewValue(e.target.value); console.log(e.target.value)}}/></span> : null}
-                        <Editor divState={actionType} postId={props.postId} userId={props.userId} grade={reviewValue}/>
+
+                        <Editor divState={actionType} postId={props.postId} userId={props.userId} grade={reviewValue} setReviewValue={setReviewValue}/>
                     </div>
                     <div className="button-list">
                         <ul className="popup-buttons">

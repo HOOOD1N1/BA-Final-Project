@@ -12,9 +12,12 @@
 }
 
 .singular {
-    border: 1px black solid;
     display: flex;
     flex-flow: row wrap;
+}
+
+.singular:hover {
+    border: 1px black solid;
 }
 
 .singular img {

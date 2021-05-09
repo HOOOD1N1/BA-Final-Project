@@ -197,7 +197,7 @@ import { render } from 'react-dom';
                      posts.length > 0 ? renderPosts() : null
                  }
                 <h3 className="subtitle">Personal Data</h3>
-                <section id="bars" style={{width:'100vw', height: '50vh'}}>
+                <section id="bars">
                 <div id="bar1" className="bars">
                         <canvas id="canvas4" ></canvas>
                     </div>

@@ -247,7 +247,7 @@ app.post('/user/:user/reviews', async(req, res) => {
     var id = req.params.user;
     try {
 
-        var results = await pool.query(`SELECT content,profile_image, reviews.creation_date, reviews.id as postId, "Users".username, "Users".id from reviews
+        var results = await pool.query(`SELECT content,profile_image,review, reviews.creation_date, reviews.id as postId, "Users".username, "Users".id from reviews
         join "Users" on reviews.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
         if (results) {
 
@@ -324,6 +324,7 @@ app.post('/post/:postId/reviews', async(req, res) => {
 
         var results = await pool.query(`SELECT content,profile_image, reviews.creation_date,reviews.review, reviews.id as postId, "Users".username, "Users".id from reviews
         join "Users" on reviews.author_id = "Users".id WHERE reviews.post_id = $1 ORDER BY creation_date ;`, [postId]);
+        var results2 = await pool.query(`SELECT AVG(review) from reviews WHERE post_id=$1`, [postId])
         if (results) {
 
             res.send({

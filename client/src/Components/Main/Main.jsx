@@ -65,8 +65,9 @@ export default function Main(props) {
                     <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Analytics</li>
                     </Link>
-                    
+                    <Link style={{textDecoration: 'none'}} to={'/rooms'}>
                     <li className="list-item">Rooms</li>
+                    </Link>
                     <Link style={{textDecoration: 'none'}} to={`/chat/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Chat</li>
                     </Link>  
@@ -91,8 +92,9 @@ export default function Main(props) {
                     <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Analytics</li>
                     </Link>
-                    
+                    <Link style={{textDecoration: 'none'}} to={'/rooms'}>
                     <li className="list-item">Rooms</li>
+                    </Link>
                     <Link style={{textDecoration: 'none'}} to={`/chat/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Chat</li>
                     </Link>

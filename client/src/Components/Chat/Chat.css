@@ -14,7 +14,7 @@
     border-left: 1px solid black;
     border-top: 1px solid black;
     border-right: 1px solid black;
-    margin-top: 20px;
+    margin-top: 130px;
 }
 
 .outer-chatbox {
@@ -69,4 +69,6 @@
 
 .message-list {
     height: inherit;
+    position: relative;
+    bottom: 0;
 }

@@ -1,7 +1,7 @@
 .grid {
     display: grid;
     grid-template-rows: 20% 47% 33%;
-    background-color: #f0f2f5;
+    background-color: #fff0e5;
 }
 
 .container {
@@ -12,7 +12,9 @@
     justify-content: space-between;
 }
 
-.leftContainer {}
+.leftContainer {
+    border: 1px black solid;
+}
 
 .leftContainer h2 {
     border: 1px black solid;
@@ -66,17 +68,21 @@ input:focus {
     letter-spacing: 3px;
 }
 
+.leftContainer img {
+    display: block;
+    margin: 0 auto;
+}
+
 @media (max-width: 890px) {
-    .title {
-        letter-spacing: 3px;
-        text-align: center;
-    }
-    .leftContainer h2 {
-        text-align: center;
+    .leftContainer {
+        margin: 0 auto;
     }
     .rightContainer {
         position: relative;
-        left: 50%;
+        margin: 0 auto;
+    }
+    .container {
+        margin-top: 100px;
     }
 }
 

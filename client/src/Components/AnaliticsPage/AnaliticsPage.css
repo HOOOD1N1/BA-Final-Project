@@ -47,6 +47,11 @@ canvas {
     height: 50vh;
 }
 
+#bars {
+    width: 100vw;
+    height: 50vh;
+}
+
 @media screen and (max-width: 900px) {
     #pies {
         height: auto;
@@ -62,5 +67,24 @@ canvas {
         display: block;
         width: 50vw;
         margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #pies {
+        height: auto;
+    }
+    .pie {
+        display: block;
+        width: 75vw;
+        height: 17vh;
+        margin: 0 auto;
+        margin-bottom: 17vh;
+    }
+    #bars .bars {
+        display: block;
+        width: 75vw;
+        margin: 0 auto;
+        margin-bottom: 20px;
     }
 }

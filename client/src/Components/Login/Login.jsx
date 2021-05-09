@@ -195,7 +195,7 @@ export default function Login(props) {
                 <div className="grid">
         <div className="container">
             <div className="leftContainer">
-                <h1 className="title"> MyStories </h1>
+                <img src="http://localhost:8888/photos/MyStories.png" alt="logo" />
                 <h2 className="subtitle">Share your work and ideas, and get feedback from people all around the world</h2>
             </div>
             <div className="rightContainer">

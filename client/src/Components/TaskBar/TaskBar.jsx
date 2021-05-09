@@ -49,10 +49,13 @@ export default function TaskBar(props){
         let newResults = await result.json()
         setResults(newResults.results)
     }
-    // const showMoreList = () => {
-    //     let x = document.getElementById("more-list-items");
-    //     x.style.display = 'block';
-    // }
+
+    const showMoreList = () => {
+        let x = document.getElementById('more-list-items');
+        if(x.style.display === 'block'){
+            x.style.display = 'none';
+        }else  x.style.display = 'block';
+    }
     
     return (
         <nav className="taskbar" id="taskbar-id">
@@ -74,7 +77,7 @@ export default function TaskBar(props){
             </span>
             <span className="right_side">
 
-            <img src="http://localhost:8888/photos/bell.png" alt="notifications" style={{width:'25px', height:'25px', margin:'auto', marginRight:'20px'}}/>
+            <img src="http://localhost:8888/photos/bell.png" alt="notifications" style={{cursor:'pointer',width:'25px', height:'25px', margin:'auto', marginRight:'20px'}}/>
             <Link style={{textDecoration: "none", padding: "5px"}} to={`/profile/${user.userId}`} >
                     <span className="taskbar-image" style={{position:'relative', width:'40px'}}>
                         <span><img style={{width: '40px', height:'40px', borderRadius: '50%', position: 'absolute', left: '0', top: '0'}} src={image} alt="user_image" className="profileImage"/></span>
@@ -87,11 +90,14 @@ export default function TaskBar(props){
                 </button>
             </span>
             <span id="more">
-                <img id="more-button" src="http://localhost:8888/photos/ellipsis.png" alt="More" /*onClick={showMoreList()}*/ />
+                <img id="more-button" src="http://localhost:8888/photos/ellipsis.png" alt="More" onClick={() => showMoreList()} />
                 <div id="more-list">
-                    <ul className="more-list-items">
-                    <li id="more-profile">Profile</li>
-                    <li id="more-signout">Sign Out</li>
+                    <ul id="more-list-items">
+                    <Link style={{textDecoration: "none", padding: "5px"}} to={`/profile/${user.userId}`} >
+                        <li id="more-profile">
+                            Profile
+                    </li></Link>
+                    <li id="more-signout" onClick={handleLogOut}>Sign Out</li>
                     </ul>
                     
                 </div>

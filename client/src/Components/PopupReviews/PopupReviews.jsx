@@ -47,6 +47,7 @@ export default function ProfileUserComments(props) {
             image={card.profile_image}
             form='reviews'
             parent='popup'
+            grade={card.review}
           />
         );
       })}

@@ -1,0 +1,23 @@
+.rooms-main {
+    margin-top: 15vh;
+}
+
+.create-room {
+    height: 50px;
+}
+
+#create-room-button {
+    float: right;
+    vertical-align: middle;
+    margin-right: 20px;
+    box-shadow: 1px 1px black;
+    margin: auto 20px;
+}
+
+#search-rooms {
+    margin-left: 20px;
+}
+
+#create-room-button:hover {
+    box-shadow: 2px 2px black;
+}

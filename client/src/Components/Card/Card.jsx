@@ -76,7 +76,7 @@ function Card(props) {
                             <p style={{display:'inline', verticalAlign:'super'}}>{props.username}</p>
                         </span>
                     </Link>
-
+                    
                     
                 </span>
                 {(props.parent === 'main' || props.parent === 'profile' || props.parent === 'analytics')   
@@ -86,6 +86,7 @@ function Card(props) {
                 </div>
                 : null
             }
+            {props.grade ? <p id="grade">Review: {props.grade}</p> : null}
               { props.parent !== 'popup' ? 
                 <span className="right-image">
                     <img width="20px" height="20px" src='http://localhost:8888/photos/maximize.png' alt="maximize" onClick={renderPopup} style={{cursor: 'pointer',marginTop:'10px', marginRight:'10px'}}/>

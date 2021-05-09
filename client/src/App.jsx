@@ -9,6 +9,7 @@ import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import BasicComponent from './test.jsx';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css';
+import LandingRooms from './Components/Landing-Rooms/LandingRooms.jsx';
 
 
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
                 <Route path="/profile/:userId" component={Profile} history={this.props.history}/>
                 <Route path="/analitics/:userId" component={AnaliticsPage} history={this.props.history}/>
                 <Route path="/test" component={BasicComponent} history={this.props.history}/>
+                <Route path='/rooms' component={LandingRooms} history={this.props.history}/>
                 <Route path='/chat' component={Chat} history={this.props.history}/>     
                 </Switch>
                 {/* <Profile /> */}

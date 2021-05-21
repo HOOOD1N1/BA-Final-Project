@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './Analitics.css';
+import './Analytics.css';
 
 import Chart from 'chart.js';
 
@@ -48,7 +48,7 @@ const renderChart = (type, ctx, data=0, labels=[], text="") => {
 
 
 
-export default function Analitics(props){
+export default function Analytics(props){
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async()=>{

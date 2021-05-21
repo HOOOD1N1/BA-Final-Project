@@ -131,9 +131,9 @@ p {
     .left {
         display: none;
     }
-    .right {
+    /* .right {
         display: none;
-    }
+    } */
     .feedbar {
         width: 95vw;
     }

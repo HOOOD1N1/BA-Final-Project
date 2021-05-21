@@ -8,7 +8,7 @@ import {Redirect} from 'react-router-dom';
 import Editor from '../Editor/Editor';
 import CardList from '../CardList/CardList';
 import MainPosts from '../MainPosts/MainPosts';
-import Analitics from '../Analitics/Analitics'
+import Analytics from '../Analytics/Analytics'
 import {Link} from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 
@@ -89,7 +89,7 @@ export default function Main(props) {
                 </span>
                 
                 <ul className="main_list" style={{textAlign:'center'}}>
-                    <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
+                    <Link  style={{textDecoration: 'none'}} to={`/analytics/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item">Analytics</li>
                     </Link>
                     <Link style={{textDecoration: 'none'}} to={'/rooms'}>
@@ -117,7 +117,7 @@ export default function Main(props) {
             
 
 
-            <Analitics />
+            <Analytics />
             </div>
         </div>
         

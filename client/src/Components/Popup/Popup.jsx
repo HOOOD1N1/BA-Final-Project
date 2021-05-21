@@ -27,11 +27,11 @@ export default function Popup(props){
             console.log('we set comments')
             handleChange(1);
         }
-        if(props.parent === 'main') {
-            document.getElementById("main-analytics").style.display = 'none';
-           return () => {document.getElementById("main-analytics").style.display = 'inline';} 
+        // if(props.parent === 'main') {
+        //     document.getElementById("main-analytics").style.display = 'none';
+           
 
-        }
+        // }
             }, [])
 
     useEffect(() => {
@@ -39,10 +39,16 @@ export default function Popup(props){
     }, [actionType])
 
     const clickUnmount =() => {
-        document.getElementById("taskbar-id").style.visibility='visible';
-        document.getElementById("main-analytics").style.visibility='visible';
+        
+        //document.getElementById("taskbar-id").style.visibility='visible';
+        // if(props.parent === 'main'){
+        //     document.getElementById("main-analytics").style.visibility='visible';
+        // }
+        
 
-        props.close();
+        props.setPopupOn(false);
+        props.renderPopup();
+        
         
     }
     const handleChange = (x) => {

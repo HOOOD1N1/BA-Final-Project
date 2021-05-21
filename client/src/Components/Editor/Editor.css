@@ -49,6 +49,10 @@ tr {
     margin-bottom: 10px;
 }
 
+.editor_card_button:active {
+    transform: translate(0, 0.1rem);
+}
+
 .editor_card_button:hover {
     box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }

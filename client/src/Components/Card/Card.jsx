@@ -29,20 +29,25 @@ function Card(props) {
             setNumberLikes(jsonLikes.likes);
         
     }, [])
+
     const renderPopup = () => {
 
-        if(popupOn === true) {
+        if(popupOn === true) { 
         console.log("works")
 
             setPopupOn(false);
-            document.getElementById("taskbar-id").style.display='block';
+            document.getElementById("taskbar-id").style.visibility = 'visible';
+            if(props.parent !== 'analytics')
+            document.getElementById("main-analytics").style.visibility='visible';
         }
         else {
             setPopupOn(true);
             document.getElementById("taskbar-id").style.visibility='hidden';
+            if(props.parent === 'main')
             document.getElementById("main-analytics").style.visibility='hidden';
             
         }
+        console.log("PopupOn is ", popupOn)
     }
     const handlePostLike = async () => {
         const userId = JSON.parse(localStorage.getItem('user')).userId
@@ -89,7 +94,7 @@ function Card(props) {
             {props.grade ? <p id="grade">Review: {props.grade}</p> : null}
               { props.parent !== 'popup' ? 
                 <span className="right-image">
-                    <img width="20px" height="20px" src='http://localhost:8888/photos/maximize.png' alt="maximize" onClick={renderPopup} style={{cursor: 'pointer',marginTop:'10px', marginRight:'10px'}}/>
+                    <img id="maximize" width="20px" height="20px" src='http://localhost:8888/photos/maximize.png' alt="maximize" onClick={renderPopup} style={{cursor: 'pointer',marginTop:'10px', marginRight:'10px'}}/>
                 </span>
                 :null
                 }    
@@ -103,11 +108,11 @@ function Card(props) {
                 <span className="message">{parse(props.message)}</span>
                 <span className="actions">
                     <span className="card_button like" onClick={handlePostLike}> <img className="like-img" src='http://localhost:8888/photos/like.png' alt="Like" width="20px" height="20px" style={{margin:'auto 0'}}/><p>Like {numberLikes}</p></span>
-                    <span className="card_button comment" onClick={() => {setPopupOn(true); setReview(false)}}><img src='http://localhost:8888/photos/chat.png' alt="Comment" width="20px" height="20px" style={{margin: 'auto 0'}}/><p>Comment</p></span>
-                    <span className="card_button review" onClick={() =>{ setPopupOn(true); setReview(true)}}><img src='http://localhost:8888/photos/writing.png' alt="Review" width="20px" height="20px" style={{margin:'auto 0'}}/><p>Review</p></span>
+                    <span className="card_button comment" onClick={() => {setPopupOn(true); setReview(false);renderPopup()}}><img src='http://localhost:8888/photos/chat.png' alt="Comment" width="20px" height="20px" style={{margin: 'auto 0'}}/><p>Comment</p></span>
+                    <span className="card_button review" onClick={() =>{ setPopupOn(true); setReview(true);renderPopup()}}><img src='http://localhost:8888/photos/writing.png' alt="Review" width="20px" height="20px" style={{margin:'auto 0'}}/><p>Review</p></span>
                 </span>
                 </div>
-            { popupOn && <Popup close={setPopupOn} userName={props.username} userPhoto={userPhoto} message={props.message} userId={props.userId} postId={props.postId} button={review}
+            { popupOn && <Popup renderPopup={renderPopup} setPopupOn={setPopupOn} userName={props.username} userPhoto={userPhoto} message={props.message} userId={props.userId} postId={props.postId} button={review}
             currentUser={props.currentUser} title={props.title}/> }
         </div>
     );

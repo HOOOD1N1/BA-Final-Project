@@ -135,6 +135,10 @@
         margin-right: 10px;
     }
     
+    .close:hover {
+        background-color: rgba(0, 0, 0, 0, 0.6);
+    }
+    
     .messages {
         -ms-overflow-style: none;
         /* IE and Edge */

@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import './AnaliticsPage.css';
+import './AnalyticsPage.css';
 import Taskbar from '../TaskBar/TaskBar';
-import {renderChart} from '../Analitics/Analitics';
+import {renderChart} from '../Analytics/Analytics';
 import Card from '../Card/Card'
 import { render } from 'react-dom';
 
- const AnaliticsPage =(props) =>{
+ const AnalyticsPage =(props) =>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const [posts, setPosts] = useState([]);
     useEffect(async()=>{
@@ -182,14 +182,14 @@ import { render } from 'react-dom';
             <h3 className="subtitle">General Data</h3>
             <section >
                 <section id="pies" className="pies">
-                    <div id="pie1" className="pie">
-                        <canvas id="canvas1" ></canvas>
+                    <div id="pie1" className="pie" >
+                        <canvas id="canvas1" style={{backgroundColor: '#fff0e5'}}></canvas>
                     </div>
                     <div id="pie2"className="pie" >
-                        <canvas id="canvas2"></canvas>
+                        <canvas id="canvas2" style={{backgroundColor: '#fff0e5'}}></canvas>
                     </div>
                     <div id="pie3" className="pie" >
-                        <canvas id="canvas3"></canvas>
+                        <canvas id="canvas3" style={{backgroundColor: '#fff0e5'}}></canvas>
                     </div>
                 </section>
                     <h3 className="subtitle">Top 3 posts</h3>
@@ -199,13 +199,13 @@ import { render } from 'react-dom';
                 <h3 className="subtitle">Personal Data</h3>
                 <section id="bars">
                 <div id="bar1" className="bars">
-                        <canvas id="canvas4" ></canvas>
+                        <canvas id="canvas4" style={{backgroundColor: '#fff0e5'}}></canvas>
                     </div>
                     <div id="bar2" className="bars">
-                        <canvas id="canvas5"></canvas>
+                        <canvas id="canvas5" style={{backgroundColor: '#fff0e5'}}></canvas>
                     </div>
                     <div id="bar3" className="bars" >
-                        <canvas id="canvas6"></canvas>
+                        <canvas id="canvas6" style={{backgroundColor: '#fff0e5'}}></canvas>
                     </div>
 
                 </section>
@@ -217,4 +217,4 @@ import { render } from 'react-dom';
         );
     }
 
-export default AnaliticsPage;
+export default AnalyticsPage;

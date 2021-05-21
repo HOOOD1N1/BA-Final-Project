@@ -171,7 +171,7 @@ export default function ProfileCard() {
       </span>
         {
         verify() === false ?
-         <button onClick={handleFriend}>{message}</button> : null 
+         <button id="friend-button" onClick={handleFriend}>{message}</button> : null 
         }
     </div>
 

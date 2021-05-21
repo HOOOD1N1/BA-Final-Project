@@ -124,8 +124,8 @@ export default function Editor(props){
         .then(JSONresponse => console.log(JSONresponse.status))
         .catch(error => console.log(error));
         }
-        
-        //document.getElementsByClassName("editor").innerHTML = "";
+        // Eeditor.instances['editor'].setData('')
+        document.getElementsByClassName("editor").innerHTML = "";
         
     }
 
@@ -153,14 +153,6 @@ export default function Editor(props){
             </span>
             :null
             }
-            {/* {props.divState === 'review' ?
-                <span className="review-box">
-                
-                <h3 style={{display:'inline', marginRight:'20px'}}>Grade:</h3>
-                <input type="text" className="review-input" onChange={(e) => setReviewValue(e.target.value)}/>
-            </span>
-            :null
-            } */}
 
             <div className="editor">
                     

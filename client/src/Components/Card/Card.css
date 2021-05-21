@@ -15,6 +15,10 @@
     box-shadow: 4px 4px rgba(0, 0, 0, 0.4);
 }
 
+.right-image:active {
+    transform: translate(0, 0.1rem);
+}
+
 .child-card {
     margin-bottom: 10px;
     display: flex;

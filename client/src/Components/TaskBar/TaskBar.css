@@ -21,10 +21,6 @@
     margin: auto 0;
 }
 
-.container {
-    border: 1px solid black;
-}
-
 .searchbar {
     border-radius: 30px;
     width: 200px;
@@ -75,6 +71,10 @@
 
 .signout:hover {
     box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.signout:active {
+    transform: translate(0, 0.1rem);
 }
 
 

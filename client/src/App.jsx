@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Login from './Components/Login/Login.jsx';
 import Main from './Components/Main/Main';
 import Profile from './Components/Profile/Profile.jsx';
-import AnaliticsPage from './Components/AnaliticsPage/AnaliticsPage.jsx';
+import AnalyticsPage from './Components/AnalyticsPage/AnalyticsPage.jsx';
 import Chat from './Components/Chat/Chat'
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import BasicComponent from './test.jsx';
@@ -33,7 +33,7 @@ class App extends React.Component {
                  <Route path="/" exact component={Login} />
                 <Route path="/feed" component={Main} history={this.props.history}/>
                 <Route path="/profile/:userId" component={Profile} history={this.props.history}/>
-                <Route path="/analitics/:userId" component={AnaliticsPage} history={this.props.history}/>
+                <Route path="/analytics/:userId" component={AnalyticsPage} history={this.props.history}/>
                 <Route path="/test" component={BasicComponent} history={this.props.history}/>
                 <Route path='/rooms' component={LandingRooms} history={this.props.history}/>
                 <Route path='/chat' component={Chat} history={this.props.history}/>     

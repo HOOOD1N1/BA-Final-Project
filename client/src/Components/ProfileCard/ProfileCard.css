@@ -15,6 +15,20 @@
     list-style: none;
 }
 
+#friend-button {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 1px 1px black;
+}
+
+#friend-button:hover {
+    box-shadow: 2px 2px black;
+}
+
+#friend-button:active {
+    transform: translate(0, 0.2rem);
+}
+
 .profile-cards {
     padding: 100px;
     border: 1px black solid;

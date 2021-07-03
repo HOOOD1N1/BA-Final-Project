@@ -1,8 +1,12 @@
 .friend-list {
     border: 1px solid black;
     height: 100%;
-    width: 25%;
+    width: 30%;
     overflow-y: scroll;
+    background-color: white;
+}
+.friend-list::-webkit-scrollbar {
+    display: none;
 }
 
 .friend-img {

@@ -77,7 +77,7 @@ export default function Chat(props) {
                
                <div className="chat-input">
                    <input type="text" name="messageText" id="chat-messageText"/>
-                   <button onClick={(e) => {
+                   <button id="send-button" onClick={(e) => {
                        e.preventDefault();
                        let message = document.getElementById('chat-messageText').value;
                        document.getElementById('chat-messageText').value = '';

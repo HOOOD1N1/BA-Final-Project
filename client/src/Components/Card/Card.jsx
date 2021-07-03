@@ -45,6 +45,7 @@ function Card(props) {
             document.getElementById("taskbar-id").style.visibility='hidden';
             if(props.parent === 'main')
             document.getElementById("main-analytics").style.visibility='hidden';
+            //if(document.getElementById("links-list").style.display === 'none')
             
         }
         console.log("PopupOn is ", popupOn)

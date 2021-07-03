@@ -35,18 +35,21 @@ export default function TaskBar(props){
              
     },[])
 
-    const handleSearchShow = async() => {
-    if(document.getElementById("search-results").style.display === 'block'){
-        document.getElementById("search-results").style.display = 'none'
-    } else
-    document.getElementById("search-results").style.display = 'block';
-        
+    const handleSearchShow = async(e) => {
+        if(e.target.value !== ""){
+        if(document.getElementById("search-results").style.display === 'block'){
+            document.getElementById("search-results").style.display = 'none'
+        } else
+        document.getElementById("search-results").style.display = 'block';
+        }    
     }
     const handleSearch =async(e) =>{
         let val = e.target.value;
+        if(val !== ""){
         let result = await fetch(`http://localhost:8888/query/search?value=${val}`)
         let newResults = await result.json()
         setResults(newResults.results)
+        }
     }
 
     const showMoreList = () => {
@@ -60,7 +63,7 @@ export default function TaskBar(props){
         <nav className="taskbar" id="taskbar-id">
             <Link to='/feed' style={{textDecoration:'none'}}><span className="logo"><img src="http://localhost:8888/photos/MyStories.png" alt="My Stories"/></span></Link>
             <span className="searchbar" >
-                <input type="search" name="search" id="search" placeholder="Search"  autocomplete="off" onClick={handleSearchShow} onKeyUp={(e) => handleSearch(e)}/>
+                <input type="search" name="search" id="search" placeholder="Search" autocomplete="off" onClick={handleSearchShow} onKeyUp={(e) => handleSearch(e)}/>
                 <div id="search-results" style={{display:'none'}}>
                     {results.map(result => {
                        return <Link to={`/profile/${result.id}`} style={{textDecoration: 'none', zIndex: 10}}>

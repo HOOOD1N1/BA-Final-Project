@@ -3,25 +3,28 @@
 }
 
 .chat-component {
-    width: 75vh;
+    width: 100vw;
     /* position: relative; */
     top: 10vh;
-    height: 75vh;
+    height: 90vh;
     display: flex;
-    margin: 0 auto;
+    margin-top: 10vh;
     /* justify-content: center; */
     flex-flow: column nowrap;
     border-left: 1px solid black;
     border-top: 1px solid black;
     border-right: 1px solid black;
-    margin-top: 130px;
+    
+}
+.topBar{
+background-color: white;
 }
 
 .outer-chatbox {
-    width: 75vh;
+    width: 100vw;
     /* position: relative; */
     top: 10vh;
-    height: 75vh;
+    height: 90vh;
     display: flex;
     margin: 0 auto;
     /* justify-content: center; */
@@ -30,7 +33,7 @@
 }
 
 .chatbox {
-    width: 75vh;
+    width: 70vw;
     height: 75vh;
     display: flex;
     position: relative;
@@ -71,4 +74,9 @@
     height: inherit;
     position: relative;
     bottom: 0;
+    background-color: white;
+}
+#send-button{
+    cursor: pointer;
+    padding: 1px;
 }

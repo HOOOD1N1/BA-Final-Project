@@ -109,23 +109,35 @@ p {
     box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 
-.list-item {
+.list-item p{
     margin: 0 auto;
     text-align: center;
 }
 
-@media screen and (max-width: 500px) {}
+
 
 @media screen and (max-width: 900px) {
     .top-links-list {
         display: block;
+        height: 10vh;
+        position: fixed;
+        width: 100vw;
+        border-bottom: 1px black solid;
+        z-index: 1;
+        background-color: #fff0e5;
+        margin-top: 1px;
+    }
+    .main {
+        margin-top: 10vh;
     }
     .links-list {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-evenly;
+        margin: 0;
+        padding: 20px;
     }
-    .links-list li {
+    .links-list li p{
         text-decoration: none;
     }
     .left {
@@ -136,5 +148,7 @@ p {
     } */
     .feedbar {
         width: 95vw;
+        margin-top: calc(10vh + 2px);
+
     }
 }

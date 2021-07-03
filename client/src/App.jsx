@@ -6,7 +6,6 @@ import Profile from './Components/Profile/Profile.jsx';
 import AnalyticsPage from './Components/AnalyticsPage/AnalyticsPage.jsx';
 import Chat from './Components/Chat/Chat'
 import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
-import BasicComponent from './test.jsx';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css';
 import LandingRooms from './Components/Landing-Rooms/LandingRooms.jsx';
@@ -34,11 +33,9 @@ class App extends React.Component {
                 <Route path="/feed" component={Main} history={this.props.history}/>
                 <Route path="/profile/:userId" component={Profile} history={this.props.history}/>
                 <Route path="/analytics/:userId" component={AnalyticsPage} history={this.props.history}/>
-                <Route path="/test" component={BasicComponent} history={this.props.history}/>
                 <Route path='/rooms' component={LandingRooms} history={this.props.history}/>
                 <Route path='/chat' component={Chat} history={this.props.history}/>     
                 </Switch>
-                {/* <Profile /> */}
             </BrowserRouter>
             
             

@@ -110,7 +110,7 @@ import { render } from 'react-dom';
         const canvas6 = document.getElementById("canvas6").getContext('2d');
 
         const userId =  JSON.parse(localStorage.getItem('user')).userId;
-        const value = await fetch(`http://localhost:8888/analitics/${userId}`);
+        const value = await fetch(`http://localhost:8888/analytics/${userId}`);
         let newValues = await value.json();
         let data1 = [JSON.parse(newValues.totalPosts), JSON.parse(newValues.postsResult)];
         let data2 = [JSON.parse(newValues.totalComments), JSON.parse(newValues.commentsResult)];

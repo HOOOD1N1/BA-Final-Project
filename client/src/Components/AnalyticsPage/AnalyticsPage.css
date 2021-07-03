@@ -6,6 +6,10 @@
     height: 15vh;
     border-bottom: 1px black solid;
 }
+ .title_card {
+    margin: 0;
+    padding: 20px;
+}
 
 #analytics-post-1,
 #analytics-post-2,

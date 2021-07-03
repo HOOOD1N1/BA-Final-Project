@@ -120,3 +120,17 @@
         display: none;
     }
 }
+@media screen and (max-width: 501px) {
+    .info {
+        display: flex;
+        flex-flow: row nowrap;
+        height: 60px;
+        justify-content: space-between;
+    }
+    .info * {
+        margin-right: 5px;
+    }
+    .card_button p {
+        display: none;
+    }
+}

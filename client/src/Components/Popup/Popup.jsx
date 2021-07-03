@@ -39,17 +39,8 @@ export default function Popup(props){
     }, [actionType])
 
     const clickUnmount =() => {
-        
-        //document.getElementById("taskbar-id").style.visibility='visible';
-        // if(props.parent === 'main'){
-        //     document.getElementById("main-analytics").style.visibility='visible';
-        // }
-        
-
         props.setPopupOn(false);
         props.renderPopup();
-        
-        
     }
     const handleChange = (x) => {
         if(x === 1) {

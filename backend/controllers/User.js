@@ -5,6 +5,7 @@ module.exports = {
 
     create: async(params) => {
         const { username, password, email } = params
+        console.log("username " + username + " password " + password + " email " + email)
         if (username && password && email) {
             try {
                 const userExists = await pool.query('SELECT id FROM "Users" where email=$1', [email])
@@ -27,7 +28,7 @@ module.exports = {
                     }
                 }
             } catch (err) {
-                console.error(err)
+                console.error("there is an error")
                 return {
                     status: 'error',
                     message: 'ERROR_REGISTERING_USER'

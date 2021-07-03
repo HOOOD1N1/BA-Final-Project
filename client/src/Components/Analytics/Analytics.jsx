@@ -53,7 +53,7 @@ export default function Analytics(props){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async()=>{
       const userId =  JSON.parse(localStorage.getItem('user')).userId;
-        const value = await fetch(`http://localhost:8888/analitics/${userId}`);
+        const value = await fetch(`http://localhost:8888/analytics/${userId}`);
         let newValues = await value.json();
         console.log("My analytics are" + JSON.parse(newValues.totalPosts))
         const ctx = document.getElementById("canvas-1").getContext('2d');

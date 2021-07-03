@@ -15,8 +15,8 @@ const { type } = require('os');
 const chatRouter = require('./routes/chat-routes');
 const analyticsRouter = require('./routes/analytics');
 const Namespace = require('./controllers/Namespace')
-    // const { Session } = require('inspector');
 const Session = require("./controllers/Sessions.js")
+
 var upload = multer({
     storage: multer.diskStorage({
         destination: './photos/',
@@ -44,14 +44,14 @@ app.post('/ckuploads', MultiPartyMiddleWare, (req, res) => {
     let y = x.split('\\');
     let path = y[1];
     res.send({ "uploaded": "true", "url": `http://localhost:8888/photos/${path}` })
-
 })
 app.use(chatRouter);
 app.post('/photo/:id', upload.single('uploaded_file'), async(req, res) => {
     // console.log(JSON.stringify(req.file))
     console.log(req.file.filename)
     try {
-        const result = await pool.query(`UPDATE "Users" set profile_image=$1 where id=${req.params.id} returning profile_image;`, [req.file.filename])
+        const result = await pool.query(`UPDATE "Users" set profile_image=$1 where id=${req.params.id}
+         returning profile_image;`, [req.file.filename])
         if (result) {
             console.log(result.rows[0])
             res.send(JSON.stringify({ photo: `http://localhost:8888/photos/${result.rows[0].profile_image}` }));
@@ -67,7 +67,8 @@ app.get('/check/friend/:userId/:friend', async(req, res) => {
     const userId = req.params.userId;
     const friend = req.params.friend;
     console.log("my friend is" + friend)
-    const result = await pool.query('SELECT id FROM friends WHERE userid1=$1 AND userid2=$2 OR userid1=$2 AND userid2=$1', [friend, userId]);
+    const result = await pool.query(`SELECT id FROM friends WHERE
+     userid1=$1 AND userid2=$2 OR userid1=$2 AND userid2=$1`, [friend, userId]);
     if (result.rowCount === 1) {
         let message = {
             check: true
@@ -141,11 +142,8 @@ app.post('/main/user/:id', async(req, res) => {
 
 
 })
-app.get('/analitics_page/:userId', async(req, res) => {
-    let userId = req.params.userId;
 
-})
-app.get('/analitics/:userId', async(req, res) => {
+app.get('/analytics/:userId', async(req, res) => {
         let userId = req.params.userId;
         try {
             let totalPostsResult = await pool.query(`select count(*) from posts`);
@@ -157,13 +155,6 @@ app.get('/analitics/:userId', async(req, res) => {
             let totalReviewsResult = await pool.query(`select count(*) from reviews`);
             let reviewsResult = await pool.query(`select count(id) from reviews where author_id=${userId}`);
 
-            console.log(totalPostsResult.rows[0],
-                totalCommentsResult.rows[0],
-                totalReviewsResult.rows[0],
-                postsResult.rows[0],
-                commentsResult.rows[0],
-                reviewsResult.rows[0]
-            )
             res.json({
                 totalPosts: totalPostsResult.rows[0].count,
                 totalComments: totalCommentsResult.rows[0].count,
@@ -198,18 +189,16 @@ app.post('/session/validate/:userId', async(req, res) => {
 app.post('/:user/posts', async(req, res) => {
     var id = req.params.user;
     try {
-
-        var results = await pool.query(`SELECT content, profile_image, title, posts.creation_date, posts.id as postId, "Users".username, "Users".id from posts
-        join "Users" on posts.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
+        var results = await pool.query(`SELECT content, profile_image, title, posts.creation_date,
+         posts.id as postId, "Users".username, "Users".id from posts join "Users" 
+         on posts.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
         if (results) {
-
             res.send({
                 status: 'success',
                 message: 'USER_POSTS_RETRIEVED',
                 posts: JSON.stringify(results.rows)
             })
         }
-
     } catch (error) {
         res.send({
             status: 'failed',
@@ -222,18 +211,16 @@ app.post('/:user/posts', async(req, res) => {
 app.post('/user/:user/comments', async(req, res) => {
     var id = req.params.user;
     try {
-
-        var results = await pool.query(`SELECT content, profile_image, comments.creation_date, comments.id as postId, "Users".username, "Users".id from comments
-        join "Users" on comments.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
+        var results = await pool.query(`SELECT content, profile_image, comments.creation_date,
+         comments.id as postId, "Users".username, "Users".id from comments join "Users" 
+         on comments.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
         if (results) {
-
             res.send({
                 status: 'success',
                 message: 'USER_COMMENTS_RETRIEVED',
                 posts: JSON.stringify(results.rows)
             })
         }
-
     } catch (error) {
         res.send({
             status: 'failed',
@@ -246,18 +233,16 @@ app.post('/user/:user/comments', async(req, res) => {
 app.post('/user/:user/reviews', async(req, res) => {
     var id = req.params.user;
     try {
-
-        var results = await pool.query(`SELECT content,profile_image,review, reviews.creation_date, reviews.id as postId, "Users".username, "Users".id from reviews
-        join "Users" on reviews.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
+        var results = await pool.query(`SELECT content,profile_image,review, reviews.creation_date,
+         reviews.id as postId, "Users".username, "Users".id from reviews join "Users" 
+         on reviews.author_id = "Users".id where "Users".id=$1 ORDER BY creation_date DESC;`, [id]);
         if (results) {
-
             res.send({
                 status: 'success',
                 message: 'USER_REVIEWS_RETRIEVED',
                 posts: JSON.stringify(results.rows)
             })
         }
-
     } catch (error) {
         res.send({
             status: 'failed',
@@ -269,9 +254,8 @@ app.post('/user/:user/reviews', async(req, res) => {
 
 app.post('/posts', async(req, res) => {
     try {
-
-        var results = await pool.query(`SELECT content, title, profile_image, posts.creation_date, posts.id as postId, "Users".username, "Users".id from posts
-        join "Users" on posts.author_id = "Users".id ORDER BY creation_date DESC;`);
+        var results = await pool.query(`SELECT content, title, profile_image, posts.creation_date, posts.id as postId, "Users".username,
+         "Users".id from posts join "Users" on posts.author_id = "Users".id ORDER BY creation_date DESC;`);
         if (results) {
 
             res.send({
@@ -292,10 +276,10 @@ app.post('/posts', async(req, res) => {
 
 app.post('/post/:postId/comments', async(req, res) => {
     var postId = req.params.postId;
-    console.log('We are in the backend' + postId);
     try {
 
-        var results = await pool.query(`SELECT content, profile_image, comments.creation_date, comments.id as postId, "Users".username, "Users".id from comments
+        var results = await pool.query(`SELECT content, profile_image, comments.creation_date,
+         comments.id as postId, "Users".username, "Users".id from comments
         join "Users" on comments.author_id = "Users".id WHERE comments.post_id = $1 ORDER BY creation_date;`, [postId]);
         if (results) {
 
@@ -313,27 +297,21 @@ app.post('/post/:postId/comments', async(req, res) => {
         })
         res.send(error);
     }
-
-
 })
 
 app.post('/post/:postId/reviews', async(req, res) => {
     var postId = req.params.postId;
-    console.log('We are in the backend' + postId);
     try {
-
-        var results = await pool.query(`SELECT content,profile_image, reviews.creation_date,reviews.review, reviews.id as postId, "Users".username, "Users".id from reviews
-        join "Users" on reviews.author_id = "Users".id WHERE reviews.post_id = $1 ORDER BY creation_date ;`, [postId]);
-        var results2 = await pool.query(`SELECT AVG(review) from reviews WHERE post_id=$1`, [postId])
+        var results = await pool.query(`SELECT content,profile_image, reviews.creation_date,reviews.review, reviews.id as postId,
+         "Users".username, "Users".id from reviews join "Users" on reviews.author_id = "Users".id WHERE reviews.post_id = $1
+          ORDER BY creation_date ;`, [postId]);
         if (results) {
-
             res.send({
                 status: 'success',
                 message: 'REVIEWS_RETRIEVED',
                 posts: JSON.stringify(results.rows)
             })
         }
-
     } catch (error) {
         res.send({
             status: 'failed',
@@ -447,40 +425,25 @@ app.post('/:type/like/:postId/:userId', async(req, res) => {
     var userId = req.params.userId;
     var postId = req.params.postId;
     var type = req.params.type;
-    // try{
-
-    // }catch(error){
-    //     res.send(error);
-    // }
-
-
     try {
-        console.log("ENTERS TRYs")
         let exists = await pool.query(`select id from likes where post_id=${postId} and author_id=${userId}`);
         console.log(exists.rows[0])
         if (exists.rows[0]) {
-            console.log("ENTERS Exists if")
             let x = exists.rows[0];
             await pool.query(`delete from likes where id=${x.id}`);
             let likeResult = await pool.query(`update ${type} set likes = likes - 1 where id=${postId} returning likes;`)
-
             if (likeResult) {
 
                 res.status(200).send(likeResult.rows[0])
             }
         } else {
-            console.log("ENTERS ELSE")
             await pool.query(`insert into likes (post_id, author_id) values (${postId}, ${userId})`);
             let likeResult = await pool.query(`update ${type} set likes = likes + 1 where id=${postId} returning likes;`)
-
             if (likeResult) {
-
                 res.status(200).send(likeResult.rows[0])
             }
         }
-
     } catch (error) {
-        console.log("_______________________________________________________________________");
         console.log(error);
     }
 
@@ -534,7 +497,9 @@ app.post('/login', async(req, res, next) => {
 
 app.post('/register', async(req, res, next) => {
     const result = await User.create(req.body)
+    console.log("result is " + JSON.stringify(result))
     if (result) {
+        console.log("there is a result")
         const { status, message } = result;
         if (status === 'error') {
             res.status(500).send(result)
@@ -568,40 +533,6 @@ app.post("/namespace/create", async(req, res) => {
         })
     );
 });
-
-// io.of('/24').on("connection", async(socket) => {
-//     console.log("New user connected");
-//     const authorizationHeader = socket.handshake.headers.authorization;
-//     if (authorizationHeader) {
-//         const { userId, sessionToken, sessionId } = JSON.parse(authorizationHeader)
-//         const validSession = await Session.validate(authorizationHeader)
-//         if (validSession === true) {
-//             console.log('ENTERED_CREATE_SOCKET')
-//             io.of(`/${userId}`).emit('started_listening', `Listening to the ${userId}`)
-//         }
-//     }
-
-//     //io.of('user');
-
-
-//     socket.on("enter", async(payload) => {
-//         const { user1, user2 } = JSON.parse(payload);
-//         console.log('Connection solved')
-//         console.log('user1', user1, 'user2', user2)
-//         socket.join(`${user1}-${user2}`);
-//         let key1 = `${user1}-${user2}`;
-//         let key2 = `${user2}-${user1}`;
-//         let result = await pool.query('SELECT message FROM messages WHERE chatroom=$1 OR chatroom=$2', [key1, key2])
-//         console.log(result.rows)
-//         if (result.rowCount >= 1)
-//             socket.of('user').to(`${user1}-${user2}`).emit('messages', JSON.stringify({ messages: result.rows }))
-//     })
-
-//     socket.on("disconnect", () => {
-//         console.log("Client disconnected");
-
-//     });
-// });
 
 
 server.listen(PORT, (err) => {

@@ -27,9 +27,6 @@ export default function MainPosts(props) {
      
       jsonPosts?.posts && setPosts(JSON.parse(jsonPosts.posts));
       // if (jsonComments && jsonComments.posts)
-
-      
-
     }
   }, []);
 

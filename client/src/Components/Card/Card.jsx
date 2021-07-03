@@ -37,7 +37,7 @@ function Card(props) {
 
             setPopupOn(false);
             document.getElementById("taskbar-id").style.visibility = 'visible';
-            if(props.parent !== 'analytics')
+            if(props.parent !== 'analytics' && props.parent!== 'profile')
             document.getElementById("main-analytics").style.visibility='visible';
         }
         else {

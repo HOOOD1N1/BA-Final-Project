@@ -16,7 +16,6 @@ export default function Login(props) {
     const [pass1, setPass1] = useState("");
     const [pass2, setPass2] = useState("");
     const [userIsAuth, setAuth] = useState(false);
-    const [isSigned, setIsSigned] = useState(false);
 
     
 
@@ -227,8 +226,8 @@ export default function Login(props) {
                 : null
                 }
                 {type === "signup"
-                ?<input type="text" className="containerChild" name="email" id="email" placeholder="Type your email" value={email} onChange={e => setEmail(e.target.value)} required />
-                :<input type="text" className="containerChild" name="email" id="email" placeholder="Type your email" value={email} onChange={e => setEmail(e.target.value)} required/>
+                ?<input type="email" className="containerChild" name="email" id="email" placeholder="Type your email" value={email} onChange={e => setEmail(e.target.value)} required />
+                :<input type="email" className="containerChild" name="email" id="email" placeholder="Type your email" value={email} onChange={e => setEmail(e.target.value)} required/>
                 }
 
                     

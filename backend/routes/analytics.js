@@ -36,7 +36,8 @@ group by "Users".id, reviews.author_id;`)
 })
 
 router.get('/analytics/cards', async(req, res) => {
-    let best_post = await pool.query(`SELECT title, posts.id as postid ,posts.creation_date,content,author_id as id, username, profile_image,likes 
+    let best_post = await pool.query(`SELECT title, posts.id as postid ,posts.creation_date,content,author_id as id, username,
+    profile_image,likes 
     FROM posts 
     JOIN "Users" 
     ON "Users".id=author_id  

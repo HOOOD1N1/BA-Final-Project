@@ -11,7 +11,6 @@ export default function TaskBar(props){
 
     const user = JSON.parse(localStorage.getItem('user'))
     const handleLogOut = async() => {
-        
         await fetch(`http://localhost:8888/clear/${user.userId}`, {
             method: 'DELETE',
             headers: {

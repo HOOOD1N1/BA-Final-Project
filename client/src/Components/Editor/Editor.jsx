@@ -184,7 +184,6 @@ export default function Editor(props){
                             
                         }
                     }
-
                     style={{zIndex: 1}}/>
             </div>
                 <span className="button-span">

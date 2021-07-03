@@ -129,10 +129,14 @@
     position: relative;
     z-index: 2;
     top: 30px;
+    right: 50px;
     padding: 0;
     width: 40px;
     padding: 20px;
     background-color: #fff0e5;
+}
+#more-signout{
+    cursor: pointer;
 }
 
 blockquote {

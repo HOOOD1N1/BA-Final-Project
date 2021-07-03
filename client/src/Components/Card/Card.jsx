@@ -39,6 +39,11 @@ function Card(props) {
             document.getElementById("taskbar-id").style.visibility = 'visible';
             if(props.parent !== 'analytics' && props.parent!== 'profile')
             document.getElementById("main-analytics").style.visibility='visible';
+            if(window.innerWidth <= 900 && props.parent !== "profile"){
+                document.getElementsByClassName("top-links-list")[0].style.display = "block";
+            } else if(window.innerWidth > 900 && props.parent !== "profile") {
+                document.getElementsByClassName("top-links-list")[0].style.display = "none"; 
+            }
         }
         else {
             setPopupOn(true);
@@ -46,7 +51,9 @@ function Card(props) {
             if(props.parent === 'main')
             document.getElementById("main-analytics").style.visibility='hidden';
             //if(document.getElementById("links-list").style.display === 'none')
-            
+            if(window.innerWidth < 900 && props.parent !== "profile"){
+                document.getElementsByClassName("top-links-list")[0].style.display = "none";
+            }
         }
         console.log("PopupOn is ", popupOn)
     }

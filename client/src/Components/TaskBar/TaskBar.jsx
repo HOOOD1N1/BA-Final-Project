@@ -36,12 +36,11 @@ export default function TaskBar(props){
     },[])
 
     const handleSearchShow = async(e) => {
-        if(e.target.value !== ""){
         if(document.getElementById("search-results").style.display === 'block'){
             document.getElementById("search-results").style.display = 'none'
         } else
         document.getElementById("search-results").style.display = 'block';
-        }    
+            
     }
     const handleSearch =async(e) =>{
         let val = e.target.value;

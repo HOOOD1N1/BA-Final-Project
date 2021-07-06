@@ -44,6 +44,8 @@ function Card(props) {
             } else if(window.innerWidth > 900 && props.parent !== "profile") {
                 document.getElementsByClassName("top-links-list")[0].style.display = "none"; 
             }
+           
+            
         }
         else {
             setPopupOn(true);
@@ -54,6 +56,7 @@ function Card(props) {
             if(window.innerWidth < 900 && props.parent !== "profile"){
                 document.getElementsByClassName("top-links-list")[0].style.display = "none";
             }
+           
         }
         console.log("PopupOn is ", popupOn)
     }

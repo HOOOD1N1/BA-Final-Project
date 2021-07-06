@@ -62,7 +62,7 @@ export default function Main(props) {
             <div className="main" id="main-div">
                 <div className="top-links-list">
                     <ul className="links-list">
-                    <Link  style={{textDecoration: 'none'}} to={`/analitics/${JSON.parse(localStorage.getItem('user')).userId}`}>
+                    <Link  style={{textDecoration: 'none'}} to={`/analytics/${JSON.parse(localStorage.getItem('user')).userId}`}>
                     <li className="list-item"><p>Analytics</p></li>
                     </Link>
                     <Link style={{textDecoration: 'none'}} to={'/rooms'}>
